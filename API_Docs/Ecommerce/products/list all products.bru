@@ -1,0 +1,854 @@
+meta {
+  name: list all products
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/products/list
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get all products
+  description: '''
+    his endpoint gets a list of all products.
+          
+    It uses ApiFeatures, so it supports:
+          
+    pagination
+    filtering
+    searching
+    sorting
+    Examples:
+          
+    GET /products?page=1&limit=10 → show page 1 with 10 products
+    GET /products?search=laptop → search product names
+    GET /products?categoryId=123 → show products in a category
+    GET /products?sort=price → sort from low to high
+    GET /products?sort=-price → sort from high to low
+    Simple meaning: this API is used to show many products with smart filtering and page navigation.
+  '''
+  
+  request: {
+    url: {{url}}/products/list
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:14:43 GMT
+      etag: W/"5ff4-SiIRgd4BWNPhXDxmBJUvTNDQX34"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::t4kv2-1791656083162-980e46251b9b
+      transfer-encoding: chunked
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "page": 1,
+          "total": 15,
+          "data": [
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/Products/xtyp/2026-10-03__9X7F1_aUp7w6CQZ.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/Products/xtyp/2026-10-03__9X7F1_aUp7w6CQZ.jpg",
+                    "_id": "6ac11435957e9db5eb78a2b2"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/Products/xtyp/2026-10-03__nCpa2_FCf_dPXqv.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/Products/xtyp/2026-10-03__nCpa2_FCf_dPXqv.jpg",
+                    "_id": "6ac11435957e9db5eb78a2b3"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/Products/xtyp/2026-10-03__-8ar3_Lx6l2DHU7.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/Products/xtyp/2026-10-03__-8ar3_Lx6l2DHU7.jpg",
+                    "_id": "6ac11435957e9db5eb78a2b4"
+                  }
+                ],
+                "customId": "xtyp"
+              },
+              "_id": "6ac11435957e9db5eb78a2b1",
+              "title": "Hatif Nokhba 5G",
+              "overview": "Flagship 5G smartphone with a stunning AMOLED display, pro-grade camera, full Arabic keyboard and interface support, and all-day battery.",
+              "specs": {
+                "display": "6.7 inch AMOLED 120Hz",
+                "processor": "Octa-core 3.0GHz",
+                "ram": "12GB",
+                "storage": "256GB",
+                "camera": "108MP + 12MP + 8MP",
+                "battery": "5000mAh",
+                "os": "Android 15",
+                "languages": [
+                  "Arabic",
+                  "English"
+                ],
+                "colors": [
+                  "Midnight Blue",
+                  "Titanium Silver"
+                ]
+              },
+              "price": 899,
+              "stock": 48,
+              "rating": 0,
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8482919daf950d1127540e",
+              "brandId": "6abeb58ba2477cf37e7b4673",
+              "slug": "hatif_nokhba_5g",
+              "appliedPrice": 899,
+              "createdAt": "2026-10-03T14:41:57.656Z",
+              "updatedAt": "2026-10-09T18:54:00.199Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__jAXd4_e8GHLYYnS.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__jAXd4_e8GHLYYnS.jpg",
+                    "_id": "6ac11688c11cd3b96b26e731"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__u0sz3_olEZClnU1.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__u0sz3_olEZClnU1.jpg",
+                    "_id": "6ac11688c11cd3b96b26e732"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__mRHl2_KvVfnYqdY.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__mRHl2_KvVfnYqdY.jpg",
+                    "_id": "6ac11688c11cd3b96b26e733"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__xRpm1_KXevf9ZN6.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/Products/FFNK/2026-10-03__xRpm1_KXevf9ZN6.jpg",
+                    "_id": "6ac11688c11cd3b96b26e734"
+                  }
+                ],
+                "customId": "FFNK"
+              },
+              "_id": "6ac11688c11cd3b96b26e730",
+              "title": "Hasoub Al Ameed Pro 15",
+              "overview": "High-performance 15.6 inch laptop with Arabic/English keyboard for professionals and students.",
+              "specs": {
+                "display": "15.6 inch FHD IPS",
+                "processor": "Intel Core i7 13th Gen",
+                "ram": "16GB DDR5",
+                "storage": "1TB NVMe SSD",
+                "gpu": "RTX 4050 6GB",
+                "weight": "1.8kg",
+                "battery": "72Wh",
+                "os": "Windows 11",
+                "keyboard": "Arabic/English backlit"
+              },
+              "price": 1450,
+              "stock": 35,
+              "rating": 0,
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8494836fbdd1f62e37174a",
+              "brandId": "6abeb5d8a2477cf37e7b4679",
+              "slug": "hasoub_al_ameed_pro_15",
+              "appliedPrice": 1450,
+              "createdAt": "2026-10-03T14:51:52.316Z",
+              "updatedAt": "2026-10-03T14:51:52.316Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/Products/_dRF/2026-10-03__fgJ71_EFHGUuudz.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/Products/_dRF/2026-10-03__fgJ71_EFHGUuudz.jpg",
+                    "_id": "6ac11714c11cd3b96b26e73b"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/Products/_dRF/2026-10-03__mD6C2_3Vh866iNB.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/Products/_dRF/2026-10-03__mD6C2_3Vh866iNB.jpg",
+                    "_id": "6ac11714c11cd3b96b26e73c"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/Products/_dRF/2026-10-03__ruYY3_LPwRiHJqvl.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/Products/_dRF/2026-10-03__ruYY3_LPwRiHJqvl.jpg",
+                    "_id": "6ac11714c11cd3b96b26e73d"
+                  }
+                ],
+                "customId": "_dRF"
+              },
+              "_id": "6ac11714c11cd3b96b26e73a",
+              "title": "Sammaat Hams Air",
+              "overview": "Wireless noise-cancelling over-ear headphones with deep bass and 40-hour battery.",
+              "specs": {
+                "type": "Over-ear wireless",
+                "bluetooth": "5.3",
+                "anc": "Active Noise Cancelling",
+                "battery": "40 hours",
+                "driver": "40mm",
+                "weight": "250g",
+                "colors": [
+                  "Black",
+                  "Silver"
+                ]
+              },
+              "price": 249,
+              "stock": 120,
+              "rating": 0,
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8483739daf950d11275412",
+              "brandId": "6abeb60fa2477cf37e7b467f",
+              "slug": "sammaat_hams_air",
+              "appliedPrice": 249,
+              "createdAt": "2026-10-03T14:54:12.310Z",
+              "updatedAt": "2026-10-03T14:54:12.310Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/Products/dSLx/2026-10-03__QKOx1_KZQppC0wa.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/Products/dSLx/2026-10-03__QKOx1_KZQppC0wa.jpg",
+                    "_id": "6ac117c0c11cd3b96b26e744"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/Products/dSLx/2026-10-03__rerb2_G8Iw2A5mf.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/Products/dSLx/2026-10-03__rerb2_G8Iw2A5mf.jpg",
+                    "_id": "6ac117c0c11cd3b96b26e745"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/Products/dSLx/2026-10-03__ybV93_fiMbTJdjY0.jpg",
+                    "filePath": "/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/Products/dSLx/2026-10-03__ybV93_fiMbTJdjY0.jpg",
+                    "_id": "6ac117c0c11cd3b96b26e746"
+                  }
+                ],
+                "customId": "dSLx"
+              },
+              "_id": "6ac117c0c11cd3b96b26e743",
+              "title": "Daqeq Smart S2",
+              "overview": "Smartwatch with health tracking, GPS and full Arabic interface support.",
+              "specs": {
+                "display": "1.4 inch AMOLED",
+                "battery": "7 days",
+                "waterResistance": "5ATM",
+                "sensors": [
+                  "Heart Rate",
+                  "SpO2",
+                  "GPS",
+                  "Sleep"
+                ],
+                "connectivity": "Bluetooth 5.2",
+                "languages": [
+                  "Arabic",
+                  "English"
+                ],
+                "strap": "Silicone"
+              },
+              "price": 179,
+              "stock": 200,
+              "rating": 0,
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8483929daf950d11275416",
+              "brandId": "6abeb630a2477cf37e7b4685",
+              "slug": "daqeq_smart_s2",
+              "appliedPrice": 179,
+              "createdAt": "2026-10-03T14:57:04.390Z",
+              "updatedAt": "2026-10-03T14:57:04.390Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/Products/21yq/2026-10-03__weZn1_f2GCBV-LZ.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/Products/21yq/2026-10-03__weZn1_f2GCBV-LZ.jpg",
+                    "_id": "6ac11867c11cd3b96b26e74d"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/Products/21yq/2026-10-03__bKB82_r9HhoIN1I.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/Products/21yq/2026-10-03__bKB82_r9HhoIN1I.jpg",
+                    "_id": "6ac11867c11cd3b96b26e74e"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/Products/21yq/2026-10-03__wjUS3_zk76Xj1B5.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/Products/21yq/2026-10-03__wjUS3_zk76Xj1B5.jpg",
+                    "_id": "6ac11867c11cd3b96b26e74f"
+                  }
+                ],
+                "customId": "21yq"
+              },
+              "_id": "6ac11867c11cd3b96b26e74c",
+              "title": "Nakhlat Al Tamr Al Dakhiliya",
+              "overview": "Indoor date palm in a simple ceramic pot, a classic Arabic plant that brings greenery to any room.",
+              "specs": {
+                "plantType": "Date palm (Phoenix dactylifera)",
+                "height": "90cm",
+                "potMaterial": "Ceramic",
+                "light": "Bright light",
+                "watering": "Once a week",
+                "origin": "Locally grown"
+              },
+              "price": 60,
+              "stock": 85,
+              "rating": 0,
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a84841e9daf950d1127541a",
+              "brandId": "6abeb66ba2477cf37e7b468b",
+              "slug": "nakhlat_al_tamr_al_dakhiliya",
+              "appliedPrice": 60,
+              "createdAt": "2026-10-03T14:59:51.150Z",
+              "updatedAt": "2026-10-03T14:59:51.150Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/Products/sMD9/2026-10-03__wd2t1_C2Yvy5ZHY.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/Products/sMD9/2026-10-03__wd2t1_C2Yvy5ZHY.jpg",
+                    "_id": "6ac11d3a69bcb60caf983a7a"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/Products/sMD9/2026-10-03__cate2_xsfCMFOK-.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/Products/sMD9/2026-10-03__cate2_xsfCMFOK-.jpg",
+                    "_id": "6ac11d3a69bcb60caf983a7b"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/Products/sMD9/2026-10-03__Pt543_IO5iOjatB.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/Products/sMD9/2026-10-03__Pt543_IO5iOjatB.jpg",
+                    "_id": "6ac11d3a69bcb60caf983a7c"
+                  }
+                ],
+                "customId": "sMD9"
+              },
+              "_id": "6ac11d3a69bcb60caf983a79",
+              "title": "Kanabat Al Majlis Al Arabi",
+              "overview": "Comfortable Arabic majlis floor-seating set with firm cushions and washable covers.",
+              "specs": {
+                "type": "Arabic majlis floor seating",
+                "pieces": 4,
+                "material": "Hardwood frame, foam cushions, fabric covers",
+                "color": "Beige",
+                "coverWashable": true,
+                "assembly": "Not required"
+              },
+              "price": 780,
+              "stock": 18,
+              "rating": 0,
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a8484399daf950d1127541e",
+              "brandId": "6abeb689a2477cf37e7b4691",
+              "slug": "kanabat_al_majlis_al_arabi",
+              "appliedPrice": 780,
+              "createdAt": "2026-10-03T15:20:26.051Z",
+              "updatedAt": "2026-10-03T15:20:26.051Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/Products/sCXB/2026-10-03__9ttJ1_WgdpXN2Sl.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/Products/sCXB/2026-10-03__9ttJ1_WgdpXN2Sl.jpg",
+                    "_id": "6ac11e0569bcb60caf983a83"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/Products/sCXB/2026-10-03__QK452_kOxG3Bje7.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/Products/sCXB/2026-10-03__QK452_kOxG3Bje7.jpg",
+                    "_id": "6ac11e0569bcb60caf983a84"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/Products/sCXB/2026-10-03__Pmt53_arv35X3sw.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/Products/sCXB/2026-10-03__Pmt53_arv35X3sw.jpg",
+                    "_id": "6ac11e0569bcb60caf983a85"
+                  }
+                ],
+                "customId": "sCXB"
+              },
+              "_id": "6ac11e0569bcb60caf983a82",
+              "title": "Copper Finjan",
+              "overview": "Traditional copper-finish Arabic coffee dallah set with six finjan cups.",
+              "specs": {
+                "material": "Stainless steel with copper finish",
+                "capacity": "1 liter",
+                "pieces": 7,
+                "dishwasherSafe": false,
+                "includes": [
+                  "Dallah",
+                  "6 Finjan cups"
+                ]
+              },
+              "price": 95,
+              "stock": 150,
+              "rating": 0,
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a8484579daf950d11275422",
+              "brandId": "6abeb6a9a2477cf37e7b4697",
+              "slug": "copper_finjan",
+              "appliedPrice": 95,
+              "createdAt": "2026-10-03T15:23:49.586Z",
+              "updatedAt": "2026-10-03T15:23:49.586Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/Products/-8pn/2026-10-03__dcYS1_97hCintCQ.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/Products/-8pn/2026-10-03__dcYS1_97hCintCQ.jpg",
+                    "_id": "6ac11e5e69bcb60caf983a8c"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/Products/-8pn/2026-10-03__MD3e2_Y-BreONq2.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/Products/-8pn/2026-10-03__MD3e2_Y-BreONq2.jpg",
+                    "_id": "6ac11e5e69bcb60caf983a8d"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/Products/-8pn/2026-10-03__XzI83_SaSFy06-C.jpg",
+                    "filePath": "/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/Products/-8pn/2026-10-03__XzI83_SaSFy06-C.jpg",
+                    "_id": "6ac11e5e69bcb60caf983a8e"
+                  }
+                ],
+                "customId": "-8pn"
+              },
+              "_id": "6ac11e5e69bcb60caf983a8b",
+              "title": "Lawhat Al Mashrabiya Al Hadeetha",
+              "overview": "Wall decor panel in a mashrabiya-style geometric design, in turquoise and white.",
+              "specs": {
+                "material": "Laser-cut MDF",
+                "diameter": "60cm",
+                "weight": "1.2kg",
+                "mounting": "Wall hook included",
+                "style": "Mashrabiya geometric"
+              },
+              "price": 70,
+              "stock": 90,
+              "rating": 0,
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a84846d9daf950d11275426",
+              "brandId": "6abeb6c7a2477cf37e7b469d",
+              "slug": "lawhat_al_mashrabiya_al_hadeetha",
+              "appliedPrice": 70,
+              "createdAt": "2026-10-03T15:25:18.742Z",
+              "updatedAt": "2026-10-03T15:25:18.742Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/Products/VKgC/2026-10-03__fk5f1_ZMSpsyHhI.jpg",
+                    "filePath": "/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/Products/VKgC/2026-10-03__fk5f1_ZMSpsyHhI.jpg",
+                    "_id": "6ac11eb969bcb60caf983a95"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/Products/VKgC/2026-10-03__Ie4l2__YY8T3eCH.jpg",
+                    "filePath": "/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/Products/VKgC/2026-10-03__Ie4l2__YY8T3eCH.jpg",
+                    "_id": "6ac11eb969bcb60caf983a96"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/Products/VKgC/2026-10-03__Up5I3_sZRnTbwe_.jpg",
+                    "filePath": "/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/Products/VKgC/2026-10-03__Up5I3_sZRnTbwe_.jpg",
+                    "_id": "6ac11eb969bcb60caf983a97"
+                  }
+                ],
+                "customId": "VKgC"
+              },
+              "_id": "6ac11eb969bcb60caf983a94",
+              "title": "Thawb Al Anaqa Al Rasmi",
+              "overview": "Premium cotton-blend men's thobe with refined collar and tailored fit.",
+              "specs": {
+                "material": "Cotton blend",
+                "fit": "Regular",
+                "colors": [
+                  "White",
+                  "Cream",
+                  "Grey"
+                ],
+                "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL",
+                  "XXL"
+                ],
+                "care": "Machine wash cold"
+              },
+              "price": 120,
+              "stock": 140,
+              "rating": 0,
+              "categoryId": "6a847f80dcab826cf492ee06",
+              "subCategoryId": "6a84852d9daf950d1127543a",
+              "brandId": "6abeb6f5a2477cf37e7b46a3",
+              "slug": "thawb_al_anaqa_al_rasmi",
+              "appliedPrice": 120,
+              "createdAt": "2026-10-03T15:26:49.094Z",
+              "updatedAt": "2026-10-03T15:26:49.094Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/Products/snmk/2026-10-03__NXoW1_Xka-LhoeLe.jpg",
+                    "filePath": "/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/Products/snmk/2026-10-03__NXoW1_Xka-LhoeLe.jpg",
+                    "_id": "6ac11eff69bcb60caf983a9e"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/Products/snmk/2026-10-03__Xr8N2_kL2E_JGvN.jpg",
+                    "filePath": "/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/Products/snmk/2026-10-03__Xr8N2_kL2E_JGvN.jpg",
+                    "_id": "6ac11eff69bcb60caf983a9f"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/Products/snmk/2026-10-03___feI3_YxIYIW0Cx.jpg",
+                    "filePath": "/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/Products/snmk/2026-10-03___feI3_YxIYIW0Cx.jpg",
+                    "_id": "6ac11eff69bcb60caf983aa0"
+                  }
+                ],
+                "customId": "snmk"
+              },
+              "_id": "6ac11eff69bcb60caf983a9d",
+              "title": "Na'al Khutwa Al Sahra",
+              "overview": "Comfortable leather Arabic sandals (na'al) for daily wear.",
+              "specs": {
+                "material": "Genuine leather",
+                "sole": "Rubber anti-slip",
+                "colors": [
+                  "Sand Brown",
+                  "Black"
+                ],
+                "sizes": [
+                  40,
+                  41,
+                  42,
+                  43,
+                  44,
+                  45
+                ],
+                "closure": "Slip-on"
+              },
+              "price": 85,
+              "stock": 110,
+              "rating": 0,
+              "categoryId": "6a847f80dcab826cf492ee06",
+              "subCategoryId": "6a8485469daf950d1127543e",
+              "brandId": "6abeb712a2477cf37e7b46a9",
+              "slug": "na'al_khutwa_al_sahra",
+              "appliedPrice": 85,
+              "createdAt": "2026-10-03T15:27:59.963Z",
+              "updatedAt": "2026-10-03T15:27:59.963Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__c1o31_p3o9aCREq.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__c1o31_p3o9aCREq.jpg",
+                    "_id": "6ac11f5869bcb60caf983aa7"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__x2aq2_3Cv7bRwNR.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__x2aq2_3Cv7bRwNR.jpg",
+                    "_id": "6ac11f5869bcb60caf983aa8"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__aqqn3_fk13wM05s.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__aqqn3_fk13wM05s.jpg",
+                    "_id": "6ac11f5869bcb60caf983aa9"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__nBPs4_dRGfEE__V.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/Products/BOGW/2026-10-03__nBPs4_dRGfEE__V.jpg",
+                    "_id": "6ac11f5869bcb60caf983aaa"
+                  }
+                ],
+                "customId": "BOGW"
+              },
+              "_id": "6ac11f5869bcb60caf983aa6",
+              "title": "Sundouq Fawakeh Bustan Al Khair",
+              "overview": "Fresh fruit box with Medjool dates, oranges, grapes and pomegranates.",
+              "specs": {
+                "weight": "5kg",
+                "contents": [
+                  "Oranges",
+                  "Grapes",
+                  "Pomegranates",
+                  "Medjool dates"
+                ],
+                "origin": "Local farms",
+                "storage": "Refrigerate",
+                "organic": true
+              },
+              "price": 60,
+              "stock": 300,
+              "rating": 0,
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484a49daf950d1127542a",
+              "brandId": "6abeb756a2477cf37e7b46af",
+              "slug": "sundouq_fawakeh_bustan_al_khair",
+              "appliedPrice": 60,
+              "createdAt": "2026-10-03T15:29:28.333Z",
+              "updatedAt": "2026-10-03T15:29:28.333Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__b45Q1__kT0Flo1S.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__b45Q1__kT0Flo1S.jpg",
+                    "_id": "6ac11fa969bcb60caf983ab1"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__v5iA2_OFMWnXa6l.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__v5iA2_OFMWnXa6l.jpg",
+                    "_id": "6ac11fa969bcb60caf983ab2"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__fs943_mgT9t1V-i.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__fs943_mgT9t1V-i.jpg",
+                    "_id": "6ac11fa969bcb60caf983ab3"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__DMW74__rHRhR7LW.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/Products/G9Od/2026-10-03__DMW74__rHRhR7LW.jpg",
+                    "_id": "6ac11fa969bcb60caf983ab4"
+                  }
+                ],
+                "customId": "G9Od"
+              },
+              "_id": "6ac11fa969bcb60caf983ab0",
+              "title": "Khubz Taqleedi",
+              "overview": "Fresh traditional tannour bread baked daily, pack of 10.",
+              "specs": {
+                "weight": "800g",
+                "pieces": 10,
+                "ingredients": [
+                  "Wheat flour",
+                  "Water",
+                  "Salt",
+                  "Yeast"
+                ],
+                "shelfLife": "2 days",
+                "preservatives": false
+              },
+              "price": 80,
+              "stock": 500,
+              "rating": 0,
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484bb9daf950d1127542e",
+              "brandId": "6abeb777a2477cf37e7b46b5",
+              "slug": "khubz_taqleedi",
+              "appliedPrice": 80,
+              "createdAt": "2026-10-03T15:30:49.122Z",
+              "updatedAt": "2026-10-03T15:30:49.122Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__aPJy1_asnwmSZRZ.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__aPJy1_asnwmSZRZ.jpg",
+                    "_id": "6ac11ff969bcb60caf983abb"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__FAUI2_2rrXFHYwo.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__FAUI2_2rrXFHYwo.jpg",
+                    "_id": "6ac11ff969bcb60caf983abc"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__ZorW3_NGDAWB6-P.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__ZorW3_NGDAWB6-P.jpg",
+                    "_id": "6ac11ff969bcb60caf983abd"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__UWbf4_Md7Dvia_jL.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/Products/lywH/2026-10-03__UWbf4_Md7Dvia_jL.jpg",
+                    "_id": "6ac11ff969bcb60caf983abe"
+                  }
+                ],
+                "customId": "lywH"
+              },
+              "_id": "6ac11ff969bcb60caf983aba",
+              "title": "Rawaa Al Laymoun Wa Al Na'na'",
+              "overview": "Chilled natural lemon and mint juice with no added sugar.",
+              "specs": {
+                "volume": "1 liter",
+                "ingredients": [
+                  "Lemon",
+                  "Mint",
+                  "Water"
+                ],
+                "addedSugar": false,
+                "storage": "Keep chilled",
+                "shelfLife": "7 days"
+              },
+              "price": 72,
+              "stock": 400,
+              "rating": 0,
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484d69daf950d11275432",
+              "brandId": "6abeb79aa2477cf37e7b46bb",
+              "slug": "rawaa_al_laymoun_wa_al_na'na'",
+              "appliedPrice": 72,
+              "createdAt": "2026-10-03T15:32:09.020Z",
+              "updatedAt": "2026-10-03T15:32:09.020Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__1zoL1_qcv6Zoi-o.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__1zoL1_qcv6Zoi-o.jpg",
+                    "_id": "6ac1203869bcb60caf983ac5"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__Obgb2_9s2JPoTOF.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__Obgb2_9s2JPoTOF.jpg",
+                    "_id": "6ac1203869bcb60caf983ac6"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__5y7s3_w4P_cKhyZ.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__5y7s3_w4P_cKhyZ.jpg",
+                    "_id": "6ac1203869bcb60caf983ac7"
+                  },
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__k7nJ4_FH7Dhuy_I.jpg",
+                    "filePath": "/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/Products/glLW/2026-10-03__k7nJ4_FH7Dhuy_I.jpg",
+                    "_id": "6ac1203869bcb60caf983ac8"
+                  }
+                ],
+                "customId": "glLW"
+              },
+              "_id": "6ac1203869bcb60caf983ac4",
+              "title": "\"Rakaek Qarmash Bil Za'atar",
+              "overview": "Crunchy baked snack crackers flavored with za'atar and olive oil.",
+              "specs": {
+                "weight": "120g",
+                "flavor": "Za'atar and olive oil",
+                "baked": true,
+                "allergens": [
+                  "Wheat",
+                  "Sesame"
+                ],
+                "vegan": true
+              },
+              "price": 60,
+              "stock": 600,
+              "rating": 0,
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484e99daf950d11275436",
+              "brandId": "6abeb7c2a2477cf37e7b46c1",
+              "slug": "\"rakaek_qarmash_bil_za'atar",
+              "appliedPrice": 60,
+              "createdAt": "2026-10-03T15:33:12.893Z",
+              "updatedAt": "2026-10-03T15:33:12.893Z"
+            },
+            {
+              "appliedDiscount": {
+                "amount": 0,
+                "type": "Percentage"
+              },
+              "Images": {
+                "URLs": [
+                  {
+                    "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/Products/7IXj/2026-10-10__03rBScreenshot_2026-10-10_210326_69vXXD6p6.png",
+                    "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/Products/7IXj/2026-10-10__03rBScreenshot_2026-10-10_210326_69vXXD6p6.png",
+                    "_id": "6aca805f26b507a8773ecd92"
+                  }
+                ],
+                "customId": "7IXj"
+              },
+              "_id": "6aca805f26b507a8773ecd91",
+              "title": "Big Shanta",
+              "overview": "Leather Shanta",
+              "specs": {
+                "colors": [
+                  "Red",
+                  "Blue"
+                ]
+              },
+              "price": 500,
+              "stock": 150,
+              "rating": 0,
+              "categoryId": "6aca48efef0bfa241a51c8c3",
+              "subCategoryId": "6aca491def0bfa241a51c8c7",
+              "brandId": "6aca7df5a40b96529377a300",
+              "slug": "big_shanta",
+              "appliedPrice": 500,
+              "createdAt": "2026-10-10T18:13:51.860Z",
+              "updatedAt": "2026-10-10T18:14:18.611Z"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

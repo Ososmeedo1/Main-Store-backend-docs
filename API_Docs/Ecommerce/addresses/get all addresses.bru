@@ -1,0 +1,103 @@
+meta {
+  name: get all addresses
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{url}}/addresses
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get all addresses
+  description: '''
+    This endpoint gets all saved addresses of the logged-in user.
+        
+    It returns the user’s address list
+    It can show the default and other addresses
+    Simple meaning: this API is used to view the user’s saved addresses.
+  '''
+  
+  request: {
+    url: {{url}}/addresses
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 653
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:33:05 GMT
+      etag: W/"28d-A2HtvXNrtZ78ybcMEjRSErK0pOQ"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::l4zcq-1791657185345-4089943633fd
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": [
+            {
+              "_id": "6aca4785ef0bfa241a51c8a9",
+              "userId": "6aca4785ef0bfa241a51c8a8",
+              "country": "Egypt",
+              "city": "Cairo",
+              "postalCode": 848481,
+              "buildingNumber": "3",
+              "floorNumber": 5,
+              "addressLabel": "home",
+              "isDefault": false,
+              "isMarkedAsDeleted": false,
+              "createdAt": "2026-10-10T14:11:17.860Z",
+              "updatedAt": "2026-10-10T18:18:01.570Z",
+              "__v": 0
+            },
+            {
+              "_id": "6aca815926b507a8773ecdd9",
+              "userId": "6aca4785ef0bfa241a51c8a8",
+              "country": "Egypt",
+              "city": "Giza",
+              "postalCode": 656565,
+              "buildingNumber": "51",
+              "floorNumber": 2,
+              "addressLabel": "Home",
+              "isDefault": false,
+              "isMarkedAsDeleted": false,
+              "createdAt": "2026-10-10T18:18:01.694Z",
+              "updatedAt": "2026-10-10T18:32:48.705Z",
+              "__v": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

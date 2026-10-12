@@ -1,0 +1,152 @@
+meta {
+  name: add order
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/orders/add
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "couponCode": "eefe0",
+    "paymentMethod": "cash",
+    "address": "Cairo",
+    "contactNumber": "01000000001",
+    "shippingFee": 30,
+    "VAT": 30
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add order
+  description: '''
+    This endpoint creates a new order.
+          
+    It takes order details
+    It validates the items and user
+    It saves the new order
+    Simple meaning: this API is used when a customer places an order.
+  '''
+  
+  request: {
+    url: {{url}}/orders/add
+    method: POST
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "couponCode": "eefe0",
+        "paymentMethod": "cash",
+        "address": "Cairo",
+        "contactNumber": "01000000001",
+        "shippingFee": 30,
+        "VAT": 30
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 1358
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:27:44 GMT
+      etag: W/"54e-HEiq6eJaXFqb/52lmq4EUL3jmOk"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::hdzjf-1791656862982-6b320087cfad
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Order has been added",
+          "data": {
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "products": [
+              {
+                "productId": {
+                  "appliedDiscount": {
+                    "amount": 0,
+                    "type": "Percentage"
+                  },
+                  "Images": {
+                    "URLs": [
+                      {
+                        "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/Products/7IXj/2026-10-10__03rBScreenshot_2026-10-10_210326_69vXXD6p6.png",
+                        "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/Products/7IXj/2026-10-10__03rBScreenshot_2026-10-10_210326_69vXXD6p6.png",
+                        "_id": "6aca805f26b507a8773ecd92"
+                      }
+                    ],
+                    "customId": "7IXj"
+                  },
+                  "_id": "6aca805f26b507a8773ecd91",
+                  "title": "Big Shanta",
+                  "overview": "Leather Shanta",
+                  "specs": {
+                    "colors": [
+                      "Red",
+                      "Blue"
+                    ]
+                  },
+                  "price": 500,
+                  "stock": 150,
+                  "rating": 0,
+                  "categoryId": "6aca48efef0bfa241a51c8c3",
+                  "subCategoryId": "6aca491def0bfa241a51c8c7",
+                  "brandId": "6aca7df5a40b96529377a300",
+                  "slug": "big_shanta",
+                  "appliedPrice": 500,
+                  "createdAt": "2026-10-10T18:13:51.860Z",
+                  "updatedAt": "2026-10-10T18:14:18.611Z"
+                },
+                "quantity": 4,
+                "price": 500,
+                "_id": "6aca816f26b507a8773ecde1"
+              }
+            ],
+            "fromCart": true,
+            "address": "Cairo",
+            "contactNumber": "01000000001",
+            "subTotal": 2000,
+            "shippingFee": 30,
+            "VAT": 30,
+            "couponId": "6aca81d326b507a8773ecdef",
+            "total": 1900,
+            "estimatedDeliveryDate": "2026-10-17T00:00:00.000Z",
+            "paymentMethod": "cash",
+            "orderStatus": "placed",
+            "_id": "6aca839f4ff66622d81e08ca",
+            "createdAt": "2026-10-10T18:27:43.692Z",
+            "updatedAt": "2026-10-10T18:27:43.692Z"
+          }
+        }
+      '''
+    }
+  }
+}

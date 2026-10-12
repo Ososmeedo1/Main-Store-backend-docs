@@ -1,0 +1,99 @@
+meta {
+  name: add brand
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/brands/add?category=6aca48efef0bfa241a51c8c3&subCategory=6aca491def0bfa241a51c8c7
+  body: multipartForm
+  auth: inherit
+}
+
+params:query {
+  category: 6aca48efef0bfa241a51c8c3
+  subCategory: 6aca491def0bfa241a51c8c7
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  name: Shanta
+  image: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 210326.png) @contentType(image/png)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add brand
+  description: Creates a new brand under a specific sub-category. A brand represents a company or product line like "Apple", "Samsung", "Sony", etc. Each brand must belong to a sub-category and category, have a unique name, and include a logo image. The system automatically generates a slug and verifies that the sub-category exists under the correct parent category before creating the brand.
+  
+  request: {
+    url: {{url}}/brands/add?category=6aca48efef0bfa241a51c8c3&subCategory=6aca491def0bfa241a51c8c7
+    method: POST
+    mode: multipartForm
+    params:query: {
+      category: 6aca48efef0bfa241a51c8c3
+      subCategory: 6aca491def0bfa241a51c8c7
+    }
+  
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      name: Shanta
+      image: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 210326.png) @contentType(image/png)
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 579
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:03:33 GMT
+      etag: W/"243-NevmpilQ+b/RgWy+fNd3pOE/T+A"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::qj8tg-1791655411475-c48a28031e46
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": {
+            "name": "Shanta",
+            "slug": "shanta",
+            "logo": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png",
+              "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png"
+            },
+            "customId": "zoqd",
+            "categoryId": "6aca48efef0bfa241a51c8c3",
+            "subCategoryId": "6aca491def0bfa241a51c8c7",
+            "_id": "6aca7df5a40b96529377a300",
+            "createdAt": "2026-10-10T18:03:33.331Z",
+            "updatedAt": "2026-10-10T18:03:33.331Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

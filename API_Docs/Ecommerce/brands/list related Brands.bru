@@ -1,0 +1,125 @@
+meta {
+  name: list related Brands
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url}}/brands/related?category=6aca48efef0bfa241a51c8c3&subCategory=6aca491def0bfa241a51c8c7
+  body: none
+  auth: inherit
+}
+
+params:query {
+  category: 6aca48efef0bfa241a51c8c3
+  subCategory: 6aca491def0bfa241a51c8c7
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get brand related to sub-category or category or both
+  description: '''
+    This endpoint gets all brands that belong to a specific category or sub-category.
+          
+    You can filter by category
+    You can also filter by subCategory
+    It returns the brands connected to that category or sub-category
+    In simple words: this API is used when you want to show brands that are related to a selected category or sub-category, such as “all brands under Men’s Shoes”.
+  '''
+  
+  request: {
+    url: {{url}}/brands/related?category=6aca48efef0bfa241a51c8c3&subCategory=6aca491def0bfa241a51c8c7
+    method: GET
+    mode: none
+    params:query: {
+      category: 6aca48efef0bfa241a51c8c3
+      subCategory: 6aca491def0bfa241a51c8c7
+    }
+  
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:07:45 GMT
+      etag: W/"5ba-76hM7g0tYFIzJIbP+B1W9H3cn7s"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::rx242-1791655663305-62aa06f456a2
+      transfer-encoding: chunked
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": [
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png",
+                "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png"
+              },
+              "_id": "6aca7df5a40b96529377a300",
+              "name": "Shanta1",
+              "slug": "shanta1",
+              "customId": "zoqd",
+              "categoryId": {
+                "Image": {
+                  "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/2026-10-10__UaZC__Screenshot_2026-10-10_171012_Z6zupIiZA.png",
+                  "filePath": "/Uploads/Categories/47Db/2026-10-10__UaZC__Screenshot_2026-10-10_171012_Z6zupIiZA.png"
+                },
+                "_id": "6aca48efef0bfa241a51c8c3",
+                "name": "Bags",
+                "addedBy": "6aca4785ef0bfa241a51c8a8",
+                "customId": "47Db",
+                "slug": "bags",
+                "createdAt": "2026-10-10T14:17:19.636Z",
+                "updatedAt": "2026-10-10T14:17:19.636Z",
+                "__v": 0
+              },
+              "subCategoryId": {
+                "Image": {
+                  "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png",
+                  "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png"
+                },
+                "_id": "6aca491def0bfa241a51c8c7",
+                "name": "Mini-bags",
+                "slug": "mini-bags",
+                "customId": "URS7",
+                "categoryId": "6aca48efef0bfa241a51c8c3",
+                "createdAt": "2026-10-10T14:18:05.426Z",
+                "updatedAt": "2026-10-10T18:01:39.251Z",
+                "__v": 0
+              },
+              "createdAt": "2026-10-10T18:03:33.331Z",
+              "updatedAt": "2026-10-10T18:05:02.296Z",
+              "__v": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

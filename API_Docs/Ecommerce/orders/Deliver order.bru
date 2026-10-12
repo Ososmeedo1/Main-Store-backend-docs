@@ -1,0 +1,97 @@
+meta {
+  name: Deliver order
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url}}/orders/deliver/6aca839f4ff66622d81e08ca
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Deliver order
+  description: '''
+    This endpoint marks an order as delivered.
+        
+    It finds the order
+    It updates the delivery status
+    Simple meaning: this API is used when the order is delivered to the customer.
+  '''
+  
+  request: {
+    url: {{url}}/orders/deliver/6aca839f4ff66622d81e08ca
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 604
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:29:07 GMT
+      etag: W/"25c-Ob0auq0IsU6mvOS6CDavUgbDUdw"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::ppcb4-1791656946340-ae0f219049a6
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Order has been delivered",
+          "data": {
+            "_id": "6aca839f4ff66622d81e08ca",
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "products": [
+              {
+                "productId": "6aca805f26b507a8773ecd91",
+                "quantity": 4,
+                "price": 500,
+                "_id": "6aca816f26b507a8773ecde1"
+              }
+            ],
+            "fromCart": true,
+            "address": "Cairo",
+            "contactNumber": "01000000001",
+            "subTotal": 2000,
+            "shippingFee": 30,
+            "VAT": 30,
+            "couponId": "6aca81d326b507a8773ecdef",
+            "total": 1900,
+            "estimatedDeliveryDate": "2026-10-17T00:00:00.000Z",
+            "paymentMethod": "cash",
+            "orderStatus": "delivered",
+            "createdAt": "2026-10-10T18:27:43.692Z",
+            "updatedAt": "2026-10-10T18:29:06.784Z",
+            "deliveredAt": "2026-10-10T18:29:06.783Z"
+          }
+        }
+      '''
+    }
+  }
+}

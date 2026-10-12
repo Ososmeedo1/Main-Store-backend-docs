@@ -1,0 +1,75 @@
+meta {
+  name: Verify OTP copy
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{url}}/users/verify-otp
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "otp": "t56m4E",
+    "otpToken": "example token"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}
+
+example {
+  name: Second phase of forgotten password phases
+  description: '''
+    This endpoint verifies the OTP sent to the user.
+              
+    It checks the OTP and token
+    If correct, it returns a reset token
+    Simple meaning: this API is used to confirm the identity of the user before resetting the password.
+  '''
+  
+  request: {
+    url: {{url}}/users/verify-otp
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "otp": "t56m4E",
+        "otpToken": "example token"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      x-powered-by: Express
+      access-control-allow-origin: *
+      content-type: application/json; charset=utf-8
+      content-length: 248
+      etag: W/"f8-IKhvDMt2Y+xq8vuMUxxEKFAuRFQ"
+      date: Sat, 03 Oct 2026 19:04:17 GMT
+      connection: keep-alive
+      keep-alive: timeout=5
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "OTP verified successfully",
+          "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9zb3NtZWVkb0BnbWFpbC5jb20iLCJ0eXBlIjoicmVzZXRQYXNzd29yZCIsImlhdCI6MTc5MTA1NDI1NywiZXhwIjoxNzkxMDU0ODU3fQ.Z1l9U5b6mmvxGO7T6khRnCS_iCdahJeHd-CsASp9rpc"
+        }
+      '''
+    }
+  }
+}

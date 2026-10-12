@@ -1,0 +1,102 @@
+meta {
+  name: Get user profile
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url}}/users/profile
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get user's data
+  description: '''
+    This endpoint returns the current user’s profile.
+        
+    It gets the user information
+    It also gets the default address
+    It hides the password in the response
+    Simple meaning: this API is used to fetch the logged-in user data.
+  '''
+  
+  request: {
+    url: {{url}}/users/profile
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 632
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:17:40 GMT
+      etag: W/"278-okmUQ+3COtYJS7wV5GcZ95oZcW4"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::fzjjr-1791656259730-0406da2caf24
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": {
+            "user": {
+              "_id": "6aca4785ef0bfa241a51c8a8",
+              "username": "osama1",
+              "email": "osama1@gmail.com",
+              "userType": "Admin",
+              "age": 30,
+              "gender": "male",
+              "phone": "01000000001",
+              "isEmailVerified": false,
+              "isMarkedAsDeleted": false,
+              "createdAt": "2026-10-10T14:11:17.605Z",
+              "updatedAt": "2026-10-10T18:16:58.463Z"
+            },
+            "address": {
+              "_id": "6aca4785ef0bfa241a51c8a9",
+              "userId": "6aca4785ef0bfa241a51c8a8",
+              "country": "Egypt",
+              "city": "Cairo",
+              "postalCode": 848481,
+              "buildingNumber": "3",
+              "floorNumber": 5,
+              "addressLabel": "home",
+              "isDefault": true,
+              "isMarkedAsDeleted": false,
+              "createdAt": "2026-10-10T14:11:17.860Z",
+              "updatedAt": "2026-10-10T14:11:17.860Z",
+              "__v": 0
+            }
+          }
+        }
+      '''
+    }
+  }
+}

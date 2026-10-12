@@ -1,0 +1,110 @@
+meta {
+  name: add address
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/addresses/add
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "country": "Egypt",
+    "city": "Giza",
+    "postalCode": 656565,
+    "buildingNumber": "51",
+    "floorNumber": 2,
+    "addressLabel": "Home",
+    "setAsDefault": true
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add address
+  description: '''
+    This endpoint adds a new address for the user.
+        
+    It receives address details
+    It saves the new address
+    It can set it as default
+    Simple meaning: this API is used when a user adds a shipping or billing address.
+  '''
+  
+  request: {
+    url: {{url}}/addresses/add
+    method: POST
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "country": "Egypt",
+        "city": "Giza",
+        "postalCode": 656565,
+        "buildingNumber": "51",
+        "floorNumber": 2,
+        "addressLabel": "Home",
+        "setAsDefault": true
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 350
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:18:01 GMT
+      etag: W/"15e-NUDbwW1Kaek9VeCZC87Xdxy0/Bs"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::qxhkv-1791656281248-80a4b72b7a2e
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Address was added",
+          "data": {
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "country": "Egypt",
+            "city": "Giza",
+            "postalCode": 656565,
+            "buildingNumber": "51",
+            "floorNumber": 2,
+            "addressLabel": "Home",
+            "isDefault": true,
+            "isMarkedAsDeleted": false,
+            "_id": "6aca815926b507a8773ecdd9",
+            "createdAt": "2026-10-10T18:18:01.694Z",
+            "updatedAt": "2026-10-10T18:18:01.694Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

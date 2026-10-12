@@ -1,0 +1,89 @@
+meta {
+  name: update sub category
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{url}}/subcategories/6aca491def0bfa241a51c8c7
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  name: Mini-bags
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Update a specific sub-category
+  description: Updates an existing sub-category's name, image, or both. Similar to category updates, the slug is automatically regenerated when the name changes, and the image is replaced on cloud storage. The sub-category maintains its relationship with the parent category.
+  
+  request: {
+    url: {{url}}/subcategories/6aca491def0bfa241a51c8c7
+    method: PUT
+    mode: multipartForm
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      name: Mini-bags
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 574
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:01:40 GMT
+      etag: W/"23e-8/GeLFUtnHlp/0nK9jFMCYd4izA"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::64bd2-1791655295233-ea2bf2ac7900
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Sub category updated successfully",
+          "data": {
+            "Image": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png",
+              "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png"
+            },
+            "_id": "6aca491def0bfa241a51c8c7",
+            "name": "Mini-bags",
+            "slug": "mini-bags",
+            "customId": "URS7",
+            "categoryId": {
+              "_id": "6aca48efef0bfa241a51c8c3",
+              "customId": "47Db"
+            },
+            "createdAt": "2026-10-10T14:18:05.426Z",
+            "updatedAt": "2026-10-10T18:01:39.251Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

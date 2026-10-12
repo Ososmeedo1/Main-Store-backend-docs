@@ -1,0 +1,113 @@
+meta {
+  name: update brand
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{url}}/brands/6aca7df5a40b96529377a300
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  name: Shanta1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Update a brand
+  description: Updates an existing brand's name or logo image. When the name changes, the slug is automatically regenerated. The new logo replaces the old one on cloud storage. The brand maintains its relationship with both its category and sub-category.
+  
+  request: {
+    url: {{url}}/brands/6aca7df5a40b96529377a300
+    method: PUT
+    mode: multipartForm
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      name: Shanta1
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:05:02 GMT
+      etag: W/"5d7-SAmxkgmxfQzh5EZW8XlKbDPL+JQ"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::lstd6-1791655501517-00617f1b0421
+      transfer-encoding: chunked
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Brand has been updated successfully",
+          "data": {
+            "logo": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png",
+              "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png"
+            },
+            "_id": "6aca7df5a40b96529377a300",
+            "name": "Shanta1",
+            "slug": "shanta1",
+            "customId": "zoqd",
+            "categoryId": {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/2026-10-10__UaZC__Screenshot_2026-10-10_171012_Z6zupIiZA.png",
+                "filePath": "/Uploads/Categories/47Db/2026-10-10__UaZC__Screenshot_2026-10-10_171012_Z6zupIiZA.png"
+              },
+              "_id": "6aca48efef0bfa241a51c8c3",
+              "name": "Bags",
+              "addedBy": "6aca4785ef0bfa241a51c8a8",
+              "customId": "47Db",
+              "slug": "bags",
+              "createdAt": "2026-10-10T14:17:19.636Z",
+              "updatedAt": "2026-10-10T14:17:19.636Z",
+              "__v": 0
+            },
+            "subCategoryId": {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png",
+                "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png"
+              },
+              "_id": "6aca491def0bfa241a51c8c7",
+              "name": "Mini-bags",
+              "slug": "mini-bags",
+              "customId": "URS7",
+              "categoryId": "6aca48efef0bfa241a51c8c3",
+              "createdAt": "2026-10-10T14:18:05.426Z",
+              "updatedAt": "2026-10-10T18:01:39.251Z",
+              "__v": 0
+            },
+            "createdAt": "2026-10-10T18:03:33.331Z",
+            "updatedAt": "2026-10-10T18:05:02.296Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

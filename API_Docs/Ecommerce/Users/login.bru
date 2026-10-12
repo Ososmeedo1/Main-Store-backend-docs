@@ -1,0 +1,78 @@
+meta {
+  name: login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/users/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "osama1@gmail.com",
+    "password": "Osama321#"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Login
+  description: '''
+    This endpoint logs a user in.
+      
+    It checks the email and password
+    If correct, it returns a token
+    This token is used in protected routes
+    Simple meaning: this API is used when a user signs in.
+  '''
+  
+  request: {
+    url: {{url}}/users/login
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "email": "osama1@gmail.com",
+        "password": "Osama321#"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 194
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:17:30 GMT
+      etag: W/"c2-b4ihbHar3FaQMjGCLFZrdDK9B34"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::dsqsx-1791656250228-77e015069bfe
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Logged in successfully",
+          "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhY2E0Nzg1ZWYwYmZhMjQxYTUxYzhhOCIsImlhdCI6MTc5MTY1NjI1MH0.IMgHdh9MoxR3Mndyron65cljK9KgxD3oC-dNNm2HWGo"
+        }
+      '''
+    }
+  }
+}

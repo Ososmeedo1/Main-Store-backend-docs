@@ -1,0 +1,99 @@
+meta {
+  name: cancel order
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/orders/cancel/6aca84174ff66622d81e08f4
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Cancel order
+  description: '''
+    This endpoint cancels an existing order.
+          
+    It finds the order
+    It changes status to canceled
+    It returns success
+    Simple meaning: this API is used when a user cancels their order.
+  '''
+  
+  request: {
+    url: {{url}}/orders/cancel/6aca84174ff66622d81e08f4
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 643
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:29:52 GMT
+      etag: W/"283-GIIlK5UC9uCRlm8CBhD1LEha0JQ"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::dgwf7-1791656991901-70e1e90b298f
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Order has been cancelled",
+          "data": {
+            "_id": "6aca84174ff66622d81e08f4",
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "products": [
+              {
+                "productId": "6aca805f26b507a8773ecd91",
+                "quantity": 1,
+                "price": 500,
+                "_id": "6aca84124ff66622d81e08eb"
+              }
+            ],
+            "fromCart": true,
+            "address": "Cairo",
+            "contactNumber": "01000000001",
+            "subTotal": 500,
+            "shippingFee": 30,
+            "VAT": 30,
+            "couponId": "6aca81d326b507a8773ecdef",
+            "total": 400,
+            "estimatedDeliveryDate": "2026-10-17T00:00:00.000Z",
+            "paymentMethod": "cash",
+            "orderStatus": "cancelled",
+            "createdAt": "2026-10-10T18:29:43.424Z",
+            "updatedAt": "2026-10-10T18:29:52.209Z",
+            "cancelledBy": "6aca4785ef0bfa241a51c8a8",
+            "cancelledAt": "2026-10-10T18:29:52.208Z"
+          }
+        }
+      '''
+    }
+  }
+}

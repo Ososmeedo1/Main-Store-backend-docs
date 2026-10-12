@@ -1,0 +1,97 @@
+meta {
+  name: add review
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/reviews/add
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "productId": "6aca805f26b507a8773ecd91",
+    "reviewRating": 5,
+    "reviewBody": "Good quality"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add review
+  description: '''
+    This endpoint adds a review for a product.
+        
+    It checks if the user already reviewed the product
+    It checks if the user bought the product
+    It saves the review
+    Simple meaning: this API is used when a customer leaves feedback about a product.
+  '''
+  
+  request: {
+    url: {{url}}/reviews/add
+    method: POST
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "productId": "6aca805f26b507a8773ecd91",
+        "reviewRating": 5,
+        "reviewBody": "Good quality"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 304
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:30:47 GMT
+      etag: W/"130-4DtJqCV4+HjAZvxMuhH3DpY3OrU"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::cckng-1791657046401-546f13004ce1
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Review added successfully",
+          "data": {
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "productId": "6aca805f26b507a8773ecd91",
+            "reviewRating": 5,
+            "reviewBody": "Good quality",
+            "reviewStatus": "pending",
+            "_id": "6aca84564ff66622d81e090b",
+            "createdAt": "2026-10-10T18:30:46.927Z",
+            "updatedAt": "2026-10-10T18:30:46.927Z"
+          }
+        }
+      '''
+    }
+  }
+}

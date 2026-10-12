@@ -1,0 +1,279 @@
+meta {
+  name: List sub categories
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url}}/subcategories
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get all sub-categories
+  description: This endpoint is used to get a list of all sub-categories. It also uses ApiFeatures, so it supports: pagination filtering searching sorting Examples: GET /sub-categories?page=1&limit=10 → page 1, 10 sub-categories GET /sub-categories?categoryId=123 → show sub-categories under a specific category GET /sub-categories?search=shoes → search sub-category names GET /sub-categories?sort=name → sort from A to Z The response includes: total: total number of matching sub-categories page: current page data: list of sub-categories Simple meaning: this API is for showing many sub-categories with search, filter, and page options.
+  
+  request: {
+    url: {{url}}/subcategories
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:02:07 GMT
+      etag: W/"1b0f-TK2yr6DIQIHCeZLmE7liWOAXn34"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::b8zcm-1791655326989-39cf6b36c246
+      transfer-encoding: chunked
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "page": 1,
+          "total": 15,
+          "data": [
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/bW68/2026-08-18__s5BX__mobile_phone_0XB9rKG4IN.png",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/bW68/2026-08-18__s5BX__mobile_phone_0XB9rKG4IN.png"
+              },
+              "_id": "6a8482919daf950d1127540e",
+              "name": "Mobiles",
+              "slug": "mobiles",
+              "customId": "bW68",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "createdAt": "2026-08-18T16:04:33.625Z",
+              "updatedAt": "2026-08-18T16:04:33.625Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/MKT3/2026-08-18__khmi__headphone_xvkzXRunqR.png",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/MKT3/2026-08-18__khmi__headphone_xvkzXRunqR.png"
+              },
+              "_id": "6a8483739daf950d11275412",
+              "name": "Head phones",
+              "slug": "head_phones",
+              "customId": "MKT3",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "createdAt": "2026-08-18T16:08:19.199Z",
+              "updatedAt": "2026-08-18T16:08:19.199Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/3mQX/2026-08-18__p40___smart_watches_a2vV4cJgm.png",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/3mQX/2026-08-18__p40___smart_watches_a2vV4cJgm.png"
+              },
+              "_id": "6a8483929daf950d11275416",
+              "name": "Smart watches",
+              "slug": "smart_watches",
+              "customId": "3mQX",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "createdAt": "2026-08-18T16:08:50.391Z",
+              "updatedAt": "2026-08-18T16:08:50.391Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/jzWc/2026-08-18__Wfg9__plant_NYJvg2YZ4.png",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/jzWc/2026-08-18__Wfg9__plant_NYJvg2YZ4.png"
+              },
+              "_id": "6a84841e9daf950d1127541a",
+              "name": "Indoor Plants",
+              "slug": "indoor_plants",
+              "customId": "jzWc",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "createdAt": "2026-08-18T16:11:10.527Z",
+              "updatedAt": "2026-08-18T16:11:10.527Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/PmTg/2026-08-18__7cdM__furniture_Tsopvbo207.png",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/PmTg/2026-08-18__7cdM__furniture_Tsopvbo207.png"
+              },
+              "_id": "6a8484399daf950d1127541e",
+              "name": "Furniture",
+              "slug": "furniture",
+              "customId": "PmTg",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "createdAt": "2026-08-18T16:11:37.212Z",
+              "updatedAt": "2026-08-18T16:11:37.212Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/d69m/2026-08-18__jo7d__Kitchenware_CB6KOsa3v.png",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/d69m/2026-08-18__jo7d__Kitchenware_CB6KOsa3v.png"
+              },
+              "_id": "6a8484579daf950d11275422",
+              "name": "Kitchenware",
+              "slug": "kitchenware",
+              "customId": "d69m",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "createdAt": "2026-08-18T16:12:07.724Z",
+              "updatedAt": "2026-08-18T16:12:07.724Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/8zVI/2026-08-18__eYeQ__decor_xbxAq7HZh8.png",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/8zVI/2026-08-18__eYeQ__decor_xbxAq7HZh8.png"
+              },
+              "_id": "6a84846d9daf950d11275426",
+              "name": "Decor",
+              "slug": "decor",
+              "customId": "8zVI",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "createdAt": "2026-08-18T16:12:29.569Z",
+              "updatedAt": "2026-08-18T16:12:29.569Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/HHw_/2026-08-18__z4z2__fresh_produce_L5MusZkuED.png",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/HHw_/2026-08-18__z4z2__fresh_produce_L5MusZkuED.png"
+              },
+              "_id": "6a8484a49daf950d1127542a",
+              "name": "Fresh Produce",
+              "slug": "fresh_produce",
+              "customId": "HHw_",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "createdAt": "2026-08-18T16:13:24.080Z",
+              "updatedAt": "2026-08-18T16:13:24.080Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/hxU9/2026-08-18__4wep__bakery_ltqxVcQLZL.png",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/hxU9/2026-08-18__4wep__bakery_ltqxVcQLZL.png"
+              },
+              "_id": "6a8484bb9daf950d1127542e",
+              "name": "Bakery",
+              "slug": "bakery",
+              "customId": "hxU9",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "createdAt": "2026-08-18T16:13:47.854Z",
+              "updatedAt": "2026-08-18T16:13:47.854Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/yzeS/2026-08-18__ddY___Beverages__i0Wuiv2O.png",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/yzeS/2026-08-18__ddY___Beverages__i0Wuiv2O.png"
+              },
+              "_id": "6a8484d69daf950d11275432",
+              "name": "Beverages",
+              "slug": "beverages",
+              "customId": "yzeS",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "createdAt": "2026-08-18T16:14:14.880Z",
+              "updatedAt": "2026-08-18T16:14:14.880Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/gUVE/2026-08-18__bBj1__snacks_o0R1Wqs0z.png",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/gUVE/2026-08-18__bBj1__snacks_o0R1Wqs0z.png"
+              },
+              "_id": "6a8484e99daf950d11275436",
+              "name": "Snacks",
+              "slug": "snacks",
+              "customId": "gUVE",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "createdAt": "2026-08-18T16:14:33.939Z",
+              "updatedAt": "2026-08-18T16:14:33.939Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/kztV/2026-08-18__Ku5r__men_s_wear_VgiJqa3JW.png",
+                "filePath": "/Uploads/Categories/txv9/SubCategories/kztV/2026-08-18__Ku5r__men_s_wear_VgiJqa3JW.png"
+              },
+              "_id": "6a84852d9daf950d1127543a",
+              "name": "Men's Wear",
+              "slug": "men's_wear",
+              "customId": "kztV",
+              "categoryId": "6a847f80dcab826cf492ee06",
+              "createdAt": "2026-08-18T16:15:41.286Z",
+              "updatedAt": "2026-08-18T16:15:41.286Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/QCT7/2026-08-18__SH7h__shoes_U5saUPHAb.png",
+                "filePath": "/Uploads/Categories/txv9/SubCategories/QCT7/2026-08-18__SH7h__shoes_U5saUPHAb.png"
+              },
+              "_id": "6a8485469daf950d1127543e",
+              "name": "Footwear",
+              "slug": "footwear",
+              "customId": "QCT7",
+              "categoryId": "6a847f80dcab826cf492ee06",
+              "createdAt": "2026-08-18T16:16:06.785Z",
+              "updatedAt": "2026-08-18T16:16:06.785Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/UlRF/2026-08-18__5Buw__laptop_rrGW1CTUl.png",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/UlRF/2026-08-18__5Buw__laptop_rrGW1CTUl.png"
+              },
+              "_id": "6a8494836fbdd1f62e37174a",
+              "name": "Laptops",
+              "slug": "laptops",
+              "customId": "UlRF",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "createdAt": "2026-08-18T17:21:07.283Z",
+              "updatedAt": "2026-08-18T17:21:07.283Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png",
+                "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png"
+              },
+              "_id": "6aca491def0bfa241a51c8c7",
+              "name": "Mini-bags",
+              "slug": "mini-bags",
+              "customId": "URS7",
+              "categoryId": "6aca48efef0bfa241a51c8c3",
+              "createdAt": "2026-10-10T14:18:05.426Z",
+              "updatedAt": "2026-10-10T18:01:39.251Z",
+              "__v": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,492 @@
+[
+  {
+    "id": "addresses/add-address",
+    "group": "addresses",
+    "groupSlug": "addresses",
+    "slug": "add-address",
+    "name": "add address",
+    "method": "POST",
+    "path": "/addresses/add",
+    "description": "This endpoint adds a new address for the user.\n        \n    It receives address details\n    It saves the new address\n    It can set it as default\n    Simple meaning: this API is used when a user adds a shipping or billing address."
+  },
+  {
+    "id": "addresses/update-address",
+    "group": "addresses",
+    "groupSlug": "addresses",
+    "slug": "update-address",
+    "name": "update address",
+    "method": "PUT",
+    "path": "/addresses/update/6aca815926b507a8773ecdd9",
+    "description": "This endpoint updates an existing address.\n        \n    It modifies the selected address details\n    It saves the changes\n    Simple meaning: this API is used when a user edits an address."
+  },
+  {
+    "id": "addresses/delete-address",
+    "group": "addresses",
+    "groupSlug": "addresses",
+    "slug": "delete-address",
+    "name": "delete address",
+    "method": "PATCH",
+    "path": "/addresses/soft-delete/6aca815926b507a8773ecdd9",
+    "description": "This endpoint deletes an address.\n        \n    It finds the address by ID\n    It removes it\n    It returns success\n    Simple meaning: this API is used when a user removes an address."
+  },
+  {
+    "id": "addresses/get-all-addresses",
+    "group": "addresses",
+    "groupSlug": "addresses",
+    "slug": "get-all-addresses",
+    "name": "get all addresses",
+    "method": "GET",
+    "path": "/addresses",
+    "description": "This endpoint gets all saved addresses of the logged-in user.\n        \n    It returns the user’s address list\n    It can show the default and other addresses\n    Simple meaning: this API is used to view the user’s saved addresses."
+  },
+  {
+    "id": "brands/add-brand",
+    "group": "brands",
+    "groupSlug": "brands",
+    "slug": "add-brand",
+    "name": "add brand",
+    "method": "POST",
+    "path": "/brands/add",
+    "description": ""
+  },
+  {
+    "id": "brands/get-brand",
+    "group": "brands",
+    "groupSlug": "brands",
+    "slug": "get-brand",
+    "name": "get brand",
+    "method": "GET",
+    "path": "/brands/specific",
+    "description": "This endpoint gets one specific brand from the database.\n        \n    You can search by brand id, name, or slug\n    It returns the matching brand if it exists\n    If the brand is not found, it returns an error\n    In simple words: this API is used when you want to view one brand only, such as a sing"
+  },
+  {
+    "id": "brands/update-brand",
+    "group": "brands",
+    "groupSlug": "brands",
+    "slug": "update-brand",
+    "name": "update brand",
+    "method": "PUT",
+    "path": "/brands/6aca7df5a40b96529377a300",
+    "description": ""
+  },
+  {
+    "id": "brands/delete-brand",
+    "group": "brands",
+    "groupSlug": "brands",
+    "slug": "delete-brand",
+    "name": "delete brand",
+    "method": "DELETE",
+    "path": "/brands/6aca7df5a40b96529377a300",
+    "description": ""
+  },
+  {
+    "id": "brands/list-related-brands",
+    "group": "brands",
+    "groupSlug": "brands",
+    "slug": "list-related-brands",
+    "name": "list related Brands",
+    "method": "GET",
+    "path": "/brands/related",
+    "description": "This endpoint gets all brands that belong to a specific category or sub-category.\n          \n    You can filter by category\n    You can also filter by subCategory\n    It returns the brands connected to that category or sub-category\n    In simple words: this API is used when you want to show brands t"
+  },
+  {
+    "id": "brands/list-all-brands",
+    "group": "brands",
+    "groupSlug": "brands",
+    "slug": "list-all-brands",
+    "name": "list all brands",
+    "method": "GET",
+    "path": "/brands/",
+    "description": "This endpoint is used to get a list of all brands.\n          \n    It gives you extra features through ApiFeatures, so you can:\n          \n    paginate the results\n    filter brands by conditions\n    search brands by keyword\n    sort brands by name or other fields\n    In the easiest way:\n          \n "
+  },
+  {
+    "id": "carts/add-to-cart",
+    "group": "carts",
+    "groupSlug": "carts",
+    "slug": "add-to-cart",
+    "name": "add to cart",
+    "method": "POST",
+    "path": "/carts/add/6aca805f26b507a8773ecd91",
+    "description": "This endpoint adds a product to the cart.\n        \n    It checks the product and user\n    It adds the item to the cart\n    It may update quantity if already exists\n    Simple meaning: this API is used when a user adds an item to the cart."
+  },
+  {
+    "id": "carts/remove-from-cart",
+    "group": "carts",
+    "groupSlug": "carts",
+    "slug": "remove-from-cart",
+    "name": "remove from cart",
+    "method": "PATCH",
+    "path": "/carts/remove/6aca805f26b507a8773ecd91",
+    "description": "This endpoint removes a product from the cart.\n        \n    It finds the cart item\n    It deletes it from the cart\n    Simple meaning: this API is used when a user removes an item from the cart."
+  },
+  {
+    "id": "carts/update-cart",
+    "group": "carts",
+    "groupSlug": "carts",
+    "slug": "update-cart",
+    "name": "update cart",
+    "method": "PATCH",
+    "path": "/carts/update/6aca805f26b507a8773ecd91",
+    "description": "This endpoint updates the cart item quantity.\n        \n    It changes the product quantity\n    It saves the updated cart\n    Simple meaning: this API is used when a user changes the number of items in the cart."
+  },
+  {
+    "id": "carts/get-cart",
+    "group": "carts",
+    "groupSlug": "carts",
+    "slug": "get-cart",
+    "name": "get cart",
+    "method": "GET",
+    "path": "/carts",
+    "description": "This endpoint returns the current cart.\n        \n    It lists the products in the cart\n    It may show total price or quantities\n    Simple meaning: this API is used to view the user’s shopping cart."
+  },
+  {
+    "id": "categories/add-category",
+    "group": "Categories",
+    "groupSlug": "categories",
+    "slug": "add-category",
+    "name": "add category",
+    "method": "POST",
+    "path": "/categories/add",
+    "description": ""
+  },
+  {
+    "id": "categories/get-category",
+    "group": "Categories",
+    "groupSlug": "categories",
+    "slug": "get-category",
+    "name": "get category",
+    "method": "GET",
+    "path": "/categories/specific",
+    "description": ""
+  },
+  {
+    "id": "categories/update-category",
+    "group": "Categories",
+    "groupSlug": "categories",
+    "slug": "update-category",
+    "name": "update category",
+    "method": "PUT",
+    "path": "/categories/update/6aca47afef0bfa241a51c8b4",
+    "description": ""
+  },
+  {
+    "id": "categories/delete-category",
+    "group": "Categories",
+    "groupSlug": "categories",
+    "slug": "delete-category",
+    "name": "delete category",
+    "method": "DELETE",
+    "path": "/categories/delete/6aca47afef0bfa241a51c8b4",
+    "description": ""
+  },
+  {
+    "id": "categories/list-categories",
+    "group": "Categories",
+    "groupSlug": "categories",
+    "slug": "list-categories",
+    "name": "list categories",
+    "method": "GET",
+    "path": "/categories/list",
+    "description": "This endpoint is used to get a list of all categories.\n            \n    It uses ApiFeatures, so it supports:\n            \n    pagination\n    filtering\n    searching\n    sorting\n    This means you can:\n            \n    show categories in pages\n    find a specific category by name or condition\n    sea"
+  },
+  {
+    "id": "coupons/add-coupon",
+    "group": "Coupons",
+    "groupSlug": "coupons",
+    "slug": "add-coupon",
+    "name": "add coupon",
+    "method": "POST",
+    "path": "/coupons/add",
+    "description": ""
+  },
+  {
+    "id": "coupons/get-coupons",
+    "group": "Coupons",
+    "groupSlug": "coupons",
+    "slug": "get-coupons",
+    "name": "get coupons",
+    "method": "GET",
+    "path": "/coupons/",
+    "description": "This endpoint gets all available coupons.\n        \n    It uses ApiFeatures, so it supports:\n        \n    pagination\n    filtering\n    sorting\n    searching\n    Examples:\n        \n    GET /coupons?page=1&limit=10\n    GET /coupons?search=summer\n    GET /coupons?sort=-discount\n    Simple meaning: this "
+  },
+  {
+    "id": "coupons/get-specific-coupon",
+    "group": "Coupons",
+    "groupSlug": "coupons",
+    "slug": "get-specific-coupon",
+    "name": "get specific coupon",
+    "method": "GET",
+    "path": "/coupons/6aca81d326b507a8773ecdef",
+    "description": "This endpoint gets one specific coupon.\n        \n    It checks by coupon ID or code\n    It returns the matching coupon\n    If not found, it gives an error\n    Simple meaning: this API is used to show one coupon’s details."
+  },
+  {
+    "id": "coupons/update-coupon",
+    "group": "Coupons",
+    "groupSlug": "coupons",
+    "slug": "update-coupon",
+    "name": "update coupon",
+    "method": "PUT",
+    "path": "/coupons/update/6aca81d326b507a8773ecdef",
+    "description": ""
+  },
+  {
+    "id": "orders/add-order",
+    "group": "orders",
+    "groupSlug": "orders",
+    "slug": "add-order",
+    "name": "add order",
+    "method": "POST",
+    "path": "/orders/add",
+    "description": "This endpoint creates a new order.\n          \n    It takes order details\n    It validates the items and user\n    It saves the new order\n    Simple meaning: this API is used when a customer places an order."
+  },
+  {
+    "id": "orders/cancel-order",
+    "group": "orders",
+    "groupSlug": "orders",
+    "slug": "cancel-order",
+    "name": "cancel order",
+    "method": "GET",
+    "path": "/orders/cancel/6aca84174ff66622d81e08f4",
+    "description": "This endpoint cancels an existing order.\n          \n    It finds the order\n    It changes status to canceled\n    It returns success\n    Simple meaning: this API is used when a user cancels their order."
+  },
+  {
+    "id": "orders/get-users-orders",
+    "group": "orders",
+    "groupSlug": "orders",
+    "slug": "get-users-orders",
+    "name": "Get user's orders",
+    "method": "GET",
+    "path": "/orders",
+    "description": "This endpoint gets all orders for the logged-in user.\n        \n    It returns the user’s order history\n    It may include statuses and totals\n    Simple meaning: this API is used to view a user’s order history."
+  },
+  {
+    "id": "orders/get-order-details",
+    "group": "orders",
+    "groupSlug": "orders",
+    "slug": "get-order-details",
+    "name": "Get order details",
+    "method": "GET",
+    "path": "/orders/6aca839f4ff66622d81e08ca",
+    "description": "This endpoint gets the details of one order.\n        \n    It finds the specific order\n    It returns complete order information\n    Simple meaning: this API is used to view a single order’s full details."
+  },
+  {
+    "id": "orders/deliver-order",
+    "group": "orders",
+    "groupSlug": "orders",
+    "slug": "deliver-order",
+    "name": "Deliver order",
+    "method": "GET",
+    "path": "/orders/deliver/6aca839f4ff66622d81e08ca",
+    "description": "This endpoint marks an order as delivered.\n        \n    It finds the order\n    It updates the delivery status\n    Simple meaning: this API is used when the order is delivered to the customer."
+  },
+  {
+    "id": "products/add-product",
+    "group": "products",
+    "groupSlug": "products",
+    "slug": "add-product",
+    "name": "add product",
+    "method": "POST",
+    "path": "/products/add",
+    "description": ""
+  },
+  {
+    "id": "products/update-product",
+    "group": "products",
+    "groupSlug": "products",
+    "slug": "update-product",
+    "name": "update product",
+    "method": "PUT",
+    "path": "/products/update/6aca805f26b507a8773ecd91",
+    "description": ""
+  },
+  {
+    "id": "products/list-all-products",
+    "group": "products",
+    "groupSlug": "products",
+    "slug": "list-all-products",
+    "name": "list all products",
+    "method": "GET",
+    "path": "/products/list",
+    "description": "his endpoint gets a list of all products.\n          \n    It uses ApiFeatures, so it supports:\n          \n    pagination\n    filtering\n    searching\n    sorting\n    Examples:\n          \n    GET /products?page=1&limit=10 → show page 1 with 10 products\n    GET /products?search=laptop → search product n"
+  },
+  {
+    "id": "products/get-product-by-id",
+    "group": "products",
+    "groupSlug": "products",
+    "slug": "get-product-by-id",
+    "name": "get product by id",
+    "method": "GET",
+    "path": "/products/6aca805f26b507a8773ecd91",
+    "description": "This endpoint gets one product by its details.\n        \n    You can search by product ID or other unique values\n    It returns the product data if found\n    If the product does not exist, it returns an error\n    Simple meaning: this API is used to view one product in detail."
+  },
+  {
+    "id": "products/delete-product",
+    "group": "products",
+    "groupSlug": "products",
+    "slug": "delete-product",
+    "name": "delete product",
+    "method": "DELETE",
+    "path": "/products/6aca805f26b507a8773ecd91",
+    "description": ""
+  },
+  {
+    "id": "reviews/add-review",
+    "group": "reviews",
+    "groupSlug": "reviews",
+    "slug": "add-review",
+    "name": "add review",
+    "method": "POST",
+    "path": "/reviews/add",
+    "description": "This endpoint adds a review for a product.\n        \n    It checks if the user already reviewed the product\n    It checks if the user bought the product\n    It saves the review\n    Simple meaning: this API is used when a customer leaves feedback about a product."
+  },
+  {
+    "id": "reviews/list-reviews",
+    "group": "reviews",
+    "groupSlug": "reviews",
+    "slug": "list-reviews",
+    "name": "list reviews",
+    "method": "GET",
+    "path": "/reviews",
+    "description": "This endpoint gets all reviews.\n        \n    It uses ApiFeatures when implemented in the list flow, so it can support:\n        \n    pagination\n    filtering by product or user\n    sorting by rating\n    searching review text\n    Examples:\n        \n    GET /reviews?page=1&limit=10\n    GET /reviews?pro"
+  },
+  {
+    "id": "reviews/accept-or-reject-review",
+    "group": "reviews",
+    "groupSlug": "reviews",
+    "slug": "accept-or-reject-review",
+    "name": "accept or reject review",
+    "method": "PATCH",
+    "path": "/reviews/action/6aca84564ff66622d81e090b",
+    "description": ""
+  },
+  {
+    "id": "sub-categories/add-sub-category",
+    "group": "sub categories",
+    "groupSlug": "sub-categories",
+    "slug": "add-sub-category",
+    "name": "add sub category",
+    "method": "POST",
+    "path": "/subcategories/add",
+    "description": ""
+  },
+  {
+    "id": "sub-categories/get-specific-sub-category",
+    "group": "sub categories",
+    "groupSlug": "sub-categories",
+    "slug": "get-specific-sub-category",
+    "name": "get specific sub category",
+    "method": "GET",
+    "path": "/subcategories/specific",
+    "description": ""
+  },
+  {
+    "id": "sub-categories/update-sub-category",
+    "group": "sub categories",
+    "groupSlug": "sub-categories",
+    "slug": "update-sub-category",
+    "name": "update sub category",
+    "method": "PUT",
+    "path": "/subcategories/6aca491def0bfa241a51c8c7",
+    "description": ""
+  },
+  {
+    "id": "sub-categories/delete-sub-category",
+    "group": "sub categories",
+    "groupSlug": "sub-categories",
+    "slug": "delete-sub-category",
+    "name": "Delete sub category",
+    "method": "DELETE",
+    "path": "/subcategories/6aca491def0bfa241a51c8c7",
+    "description": ""
+  },
+  {
+    "id": "sub-categories/list-sub-categories",
+    "group": "sub categories",
+    "groupSlug": "sub-categories",
+    "slug": "list-sub-categories",
+    "name": "List sub categories",
+    "method": "GET",
+    "path": "/subcategories",
+    "description": ""
+  },
+  {
+    "id": "users/register",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "register",
+    "name": "register",
+    "method": "POST",
+    "path": "/users/register",
+    "description": "This endpoint creates a new user account.\n      \n    It receives username, email, password, and address details\n    It validates the data\n    It creates the user and default address\n    Simple meaning: this API is used when a new user signs up."
+  },
+  {
+    "id": "users/update-profile",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "update-profile",
+    "name": "Update profile",
+    "method": "PUT",
+    "path": "/users/update",
+    "description": "This endpoint updates the logged-in user’s information.\n        \n    It can update password, email, username, phone, and other account fields\n    It can also update the default address\n    Simple meaning: this API is used when a user edits their profile."
+  },
+  {
+    "id": "users/login",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "login",
+    "name": "login",
+    "method": "POST",
+    "path": "/users/login",
+    "description": "This endpoint logs a user in.\n      \n    It checks the email and password\n    If correct, it returns a token\n    This token is used in protected routes\n    Simple meaning: this API is used when a user signs in."
+  },
+  {
+    "id": "users/delete-user-profile",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "delete-user-profile",
+    "name": "Delete user profile",
+    "method": "DELETE",
+    "path": "/users/delete",
+    "description": "This endpoint deletes the logged-in user account.\n        \n    It finds the user\n    It removes the account from the database\n    It returns success\n    Simple meaning: this API is used when the user deletes their account."
+  },
+  {
+    "id": "users/get-user-profile",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "get-user-profile",
+    "name": "Get user profile",
+    "method": "GET",
+    "path": "/users/profile",
+    "description": "This endpoint returns the current user’s profile.\n        \n    It gets the user information\n    It also gets the default address\n    It hides the password in the response\n    Simple meaning: this API is used to fetch the logged-in user data."
+  },
+  {
+    "id": "users/forgot-password-copy",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "forgot-password-copy",
+    "name": "Forgot password copy",
+    "method": "PATCH",
+    "path": "/users/forgot-password",
+    "description": "This endpoint starts the password reset flow.\n        \n    It checks if the email exists\n    It creates an OTP token for password reset\n    Simple meaning: this API is used when a user forgets their password."
+  },
+  {
+    "id": "users/verify-otp-copy",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "verify-otp-copy",
+    "name": "Verify OTP copy",
+    "method": "POST",
+    "path": "/users/verify-otp",
+    "description": "This endpoint verifies the OTP sent to the user.\n              \n    It checks the OTP and token\n    If correct, it returns a reset token\n    Simple meaning: this API is used to confirm the identity of the user before resetting the password."
+  },
+  {
+    "id": "users/reset-password-copy",
+    "group": "Users",
+    "groupSlug": "users",
+    "slug": "reset-password-copy",
+    "name": "Reset password copy",
+    "method": "POST",
+    "path": "/users/reset-password",
+    "description": "This endpoint sets a new password.\n              \n    It receives the reset token and new password\n    It validates the token\n    It updates the password\n    Simple meaning: this API is used to finish the password reset process."
+  }
+]

@@ -1,0 +1,96 @@
+meta {
+  name: add sub category
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/subcategories/add?categoryId=6aca48efef0bfa241a51c8c3
+  body: multipartForm
+  auth: inherit
+}
+
+params:query {
+  categoryId: 6aca48efef0bfa241a51c8c3
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  name: Backpack
+  image: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 171758.png) @contentType(image/png)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add sub-category
+  description: Creates a sub-category under a parent category to further organize products. For example, under "Electronics" you might have "Smartphones", "Laptops", "Cameras". Sub-categories must belong to an existing category and each sub-category needs a unique name and an image. The system automatically generates a slug and organizes images in a nested folder structure based on the parent category.
+  
+  request: {
+    url: {{url}}/subcategories/add?categoryId=6aca48efef0bfa241a51c8c3
+    method: POST
+    mode: multipartForm
+    params:query: {
+      categoryId: 6aca48efef0bfa241a51c8c3
+    }
+  
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      name: Backpack
+      image: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 171758.png) @contentType(image/png)
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 544
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:18:05 GMT
+      etag: W/"220-PooGU5+mVhAyRt8pYnIwqvN8nkE"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::nkk56-1791641883971-3538eedc0943
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Sub category added successfully",
+          "data": {
+            "name": "Backpack",
+            "slug": "backpack",
+            "Image": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png",
+              "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png"
+            },
+            "customId": "URS7",
+            "categoryId": "6aca48efef0bfa241a51c8c3",
+            "_id": "6aca491def0bfa241a51c8c7",
+            "createdAt": "2026-10-10T14:18:05.426Z",
+            "updatedAt": "2026-10-10T14:18:05.426Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

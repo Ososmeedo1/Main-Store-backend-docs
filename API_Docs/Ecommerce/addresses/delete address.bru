@@ -1,0 +1,71 @@
+meta {
+  name: delete address
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{url}}/addresses/soft-delete/6aca815926b507a8773ecdd9
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Delete address
+  description: '''
+    This endpoint deletes an address.
+        
+    It finds the address by ID
+    It removes it
+    It returns success
+    Simple meaning: this API is used when a user removes an address.
+  '''
+  
+  request: {
+    url: {{url}}/addresses/soft-delete/6aca815926b507a8773ecdd9
+    method: PATCH
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 38
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:33:25 GMT
+      etag: W/"26-Dec17/pfBAuhTKPsy29z0EhzPPg"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::j8kxd-1791657205265-faabe48ae35a
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Address has been deleted"
+        }
+      '''
+    }
+  }
+}

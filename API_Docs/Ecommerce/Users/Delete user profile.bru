@@ -1,0 +1,71 @@
+meta {
+  name: Delete user profile
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{url}}/users/delete
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Delete user's account
+  description: '''
+    This endpoint deletes the logged-in user account.
+        
+    It finds the user
+    It removes the account from the database
+    It returns success
+    Simple meaning: this API is used when the user deletes their account.
+  '''
+  
+  request: {
+    url: {{url}}/users/delete
+    method: DELETE
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 56
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:35:40 GMT
+      etag: W/"38-jZal8Vp5uhIe3mHdmd8C/mO7CkA"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::rwzpd-1791657340181-5337d0a35af5
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "User account has been deleted successfully"
+        }
+      '''
+    }
+  }
+}

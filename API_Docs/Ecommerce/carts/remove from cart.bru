@@ -1,0 +1,70 @@
+meta {
+  name: remove from cart
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{url}}/carts/remove/6aca805f26b507a8773ecd91
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Remove product from cart
+  description: '''
+    This endpoint removes a product from the cart.
+        
+    It finds the cart item
+    It deletes it from the cart
+    Simple meaning: this API is used when a user removes an item from the cart.
+  '''
+  
+  request: {
+    url: {{url}}/carts/remove/6aca805f26b507a8773ecd91
+    method: PATCH
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 48
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:32:23 GMT
+      etag: W/"30-SeDrVvqdDDtT8WqWE9zIpmWXjHQ"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::djwtw-1791657143237-64168f78887c
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Product has been removed form cart"
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,64 @@
+meta {
+  name: delete brand
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{url}}/brands/6aca7df5a40b96529377a300
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Delete brand
+  description: Removes a brand completely from the system. This deletes the brand logo and its folder from cloud storage. Products under this brand may become orphaned if not handled separately, so consider your data structure before deletion.
+  
+  request: {
+    url: {{url}}/brands/6aca7df5a40b96529377a300
+    method: DELETE
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 49
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:34:54 GMT
+      etag: W/"31-+qddZ5CoxweESbE5S1yevaADinc"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::xqwrm-1791657294372-732313bb9552
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Brand has been deleted successfully"
+        }
+      '''
+    }
+  }
+}

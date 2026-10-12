@@ -1,0 +1,166 @@
+meta {
+  name: list categories
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url}}/categories/list
+  body: none
+  auth: inherit
+}
+
+headers {
+  ~token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get all categories response
+  description: '''
+    This endpoint is used to get a list of all categories.
+            
+    It uses ApiFeatures, so it supports:
+            
+    pagination
+    filtering
+    searching
+    sorting
+    This means you can:
+            
+    show categories in pages
+    find a specific category by name or condition
+    search category names
+    sort the results by a field
+    Examples:
+            
+    GET /categories?page=1&limit=10 → first page, 10 categories
+    GET /categories?search=mobile → search by category name
+    GET /categories?sort=-name → sort from Z to A
+    GET /categories?name=Electronics → show only that category
+    The response includes:
+            
+    total: total number of categories
+    page: current page
+    data: category list
+    Simple meaning: this API is for showing many categories in a clean and organized way.
+  '''
+  
+  request: {
+    url: {{url}}/categories/list
+    method: GET
+    mode: none
+    headers: {
+      ~token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:14:21 GMT
+      etag: W/"87d-mPL/BpjX8COYKbaN++VfPjB5zuM"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::4dqwg-1791641660997-3f1c010d1925
+      transfer-encoding: chunked
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "page": 1,
+          "total": 5,
+          "data": [
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/2026-08-18__vI_M__electronics_4Opr5m-DiQ.png",
+                "filePath": "/Uploads/Categories/WyZG/2026-08-18__vI_M__electronics_4Opr5m-DiQ.png"
+              },
+              "_id": "6a847f29dcab826cf492edfa",
+              "name": "Electronics",
+              "addedBy": "6a847ebadcab826cf492edee",
+              "customId": "WyZG",
+              "slug": "electronics",
+              "createdAt": "2026-08-18T15:50:01.170Z",
+              "updatedAt": "2026-08-18T15:50:01.170Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/2026-08-18__6Bk5__home_and_garden_QNqL-DQTLO.png",
+                "filePath": "/Uploads/Categories/oZFm/2026-08-18__6Bk5__home_and_garden_QNqL-DQTLO.png"
+              },
+              "_id": "6a847f50dcab826cf492edfe",
+              "name": "Home & Garden",
+              "addedBy": "6a847ebadcab826cf492edee",
+              "customId": "oZFm",
+              "slug": "home_and_garden",
+              "createdAt": "2026-08-18T15:50:40.065Z",
+              "updatedAt": "2026-08-18T15:50:40.065Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/2026-08-18__APtm__food_uEGOyGdaFE.png",
+                "filePath": "/Uploads/Categories/OPT4/2026-08-18__APtm__food_uEGOyGdaFE.png"
+              },
+              "_id": "6a847f6cdcab826cf492ee02",
+              "name": "Food",
+              "addedBy": "6a847ebadcab826cf492edee",
+              "customId": "OPT4",
+              "slug": "food",
+              "createdAt": "2026-08-18T15:51:08.588Z",
+              "updatedAt": "2026-08-18T15:51:08.588Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/2026-08-18__Pm3R__clothes_ghkRDE-a_m.png",
+                "filePath": "/Uploads/Categories/txv9/2026-08-18__Pm3R__clothes_ghkRDE-a_m.png"
+              },
+              "_id": "6a847f80dcab826cf492ee06",
+              "name": "Clothes",
+              "addedBy": "6a847ebadcab826cf492edee",
+              "customId": "txv9",
+              "slug": "clothes",
+              "createdAt": "2026-08-18T15:51:28.397Z",
+              "updatedAt": "2026-08-18T15:51:28.397Z",
+              "__v": 0
+            },
+            {
+              "Image": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/65w2/2026-10-10__z4ab__Screenshot_2026-10-10_171012_HcltunYM8.png",
+                "filePath": "/Uploads/Categories/65w2/2026-10-10__z4ab__Screenshot_2026-10-10_171012_HcltunYM8.png"
+              },
+              "_id": "6aca47afef0bfa241a51c8b4",
+              "name": "Agriculture",
+              "addedBy": "6aca4785ef0bfa241a51c8a8",
+              "customId": "65w2",
+              "slug": "agriculture",
+              "createdAt": "2026-10-10T14:11:59.396Z",
+              "updatedAt": "2026-10-10T14:13:55.102Z",
+              "__v": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

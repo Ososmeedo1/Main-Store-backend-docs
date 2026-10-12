@@ -1,0 +1,108 @@
+meta {
+  name: update coupon
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{url}}/coupons/update/6aca81d326b507a8773ecdef
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "couponCode": "eefe0"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Update coupon's data
+  description: Modifies an existing coupon's details. You can update the coupon code, validity dates, discount amount/type, eligible users, or enable/disable the coupon. All changes are logged in a change log for audit purposes, which tracks who made the change and what was modified. This allows you to manage coupons over time without deleting them.
+  
+  request: {
+    url: {{url}}/coupons/update/6aca81d326b507a8773ecdef
+    method: PUT
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "couponCode": "eefe0"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 680
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:25:39 GMT
+      etag: W/"2a8-yl6jiwP02+QyV4PEiwqJr/HKfvI"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::ppcb4-1791656734184-20033630a299
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Coupon updated",
+          "data": {
+            "coupon": {
+              "_id": "6aca81d326b507a8773ecdef",
+              "couponCode": "eefe0",
+              "couponAmount": 100,
+              "couponType": "Fixed",
+              "from": "2026-10-09T21:00:00.000Z",
+              "till": "2027-09-25T21:00:00.000Z",
+              "Users": [
+                {
+                  "userId": "6aca4785ef0bfa241a51c8a8",
+                  "maxCount": 5,
+                  "usageCount": 0,
+                  "_id": "6aca81d326b507a8773ecdf0"
+                }
+              ],
+              "isEnabled": true,
+              "addedBy": "6aca4785ef0bfa241a51c8a8",
+              "createdAt": "2026-10-10T18:20:03.667Z",
+              "updatedAt": "2026-10-10T18:25:38.948Z"
+            },
+            "log": {
+              "couponId": "6aca81d326b507a8773ecdef",
+              "updatedBy": "6aca4785ef0bfa241a51c8a8",
+              "changes": {
+                "couponCode": "eefe0"
+              },
+              "_id": "6aca83224ff66622d81e08b9",
+              "createdAt": "2026-10-10T18:25:38.141Z",
+              "updatedAt": "2026-10-10T18:25:38.141Z"
+            }
+          }
+        }
+      '''
+    }
+  }
+}

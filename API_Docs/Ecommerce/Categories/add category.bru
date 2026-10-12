@@ -1,0 +1,88 @@
+meta {
+  name: add category
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/categories/add
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  image: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 171012.png) @contentType(image/png)
+  name: Bags
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add category
+  description: Creates a new main product category in the system. This is used to organize products into broad groups like "Electronics", "Clothing", "Books", etc. When you add a category, you need to provide a unique name and an image that represents the category. The system automatically creates a slug from the name and stores the image in cloud storage. Each category is identified by a unique ID and tracks which admin created it.
+  
+  request: {
+    url: {{url}}/categories/add
+    method: POST
+    mode: multipartForm
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      image: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 171012.png) @contentType(image/png)
+      name: Bags
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 491
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:11:59 GMT
+      etag: W/"1eb-4akJv+uBRlXam51o8s+bZGVwDh0"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::r54nl-1791641517798-04d4203cfb8f
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Category added successfully",
+          "data": {
+            "name": "Bags",
+            "addedBy": "6aca4785ef0bfa241a51c8a8",
+            "Image": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/65w2/2026-10-10__z4ab__Screenshot_2026-10-10_171012_HcltunYM8.png",
+              "filePath": "/Uploads/Categories/65w2/2026-10-10__z4ab__Screenshot_2026-10-10_171012_HcltunYM8.png"
+            },
+            "customId": "65w2",
+            "_id": "6aca47afef0bfa241a51c8b4",
+            "slug": "bags",
+            "createdAt": "2026-10-10T14:11:59.396Z",
+            "updatedAt": "2026-10-10T14:11:59.396Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

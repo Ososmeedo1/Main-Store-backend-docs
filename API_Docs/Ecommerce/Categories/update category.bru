@@ -1,0 +1,88 @@
+meta {
+  name: update category
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{url}}/categories/update/6aca47afef0bfa241a51c8b4
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  name: Agriculture
+  ~image: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Update category
+  description: Allows you to modify an existing category's information. You can update the category name, the image, or both. When the name changes, the system automatically updates the slug as well. The old image is replaced with the new one on cloud storage. This is useful when you need to rename categories or refresh their visual appearance.
+  
+  request: {
+    url: {{url}}/categories/update/6aca47afef0bfa241a51c8b4
+    method: PUT
+    mode: multipartForm
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      name: Agriculture
+      ~image: 
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 482
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:13:55 GMT
+      etag: W/"1e2-rVAZ+ambABNRI8ZeO177jz5yh/c"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::tgz82-1791641634676-0efc5676fed1
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": {
+            "Image": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/65w2/2026-10-10__z4ab__Screenshot_2026-10-10_171012_HcltunYM8.png",
+              "filePath": "/Uploads/Categories/65w2/2026-10-10__z4ab__Screenshot_2026-10-10_171012_HcltunYM8.png"
+            },
+            "_id": "6aca47afef0bfa241a51c8b4",
+            "name": "Agriculture",
+            "addedBy": "6aca4785ef0bfa241a51c8a8",
+            "customId": "65w2",
+            "slug": "agriculture",
+            "createdAt": "2026-10-10T14:11:59.396Z",
+            "updatedAt": "2026-10-10T14:13:55.102Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

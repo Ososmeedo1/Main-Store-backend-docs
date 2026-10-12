@@ -1,0 +1,321 @@
+meta {
+  name: list all brands
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{url}}/brands/
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get all brands
+  description: '''
+    This endpoint is used to get a list of all brands.
+          
+    It gives you extra features through ApiFeatures, so you can:
+          
+    paginate the results
+    filter brands by conditions
+    search brands by keyword
+    sort brands by name or other fields
+    In the easiest way:
+          
+    pagination() → split results into pages
+    filter() → show only matching brands
+    search() → find brands by text
+    sort() → order the list
+    Example requests:
+          
+    GET /brands?page=1&limit=10 → first page, 10 brands
+    GET /brands?search=apple → find brands with “apple”
+    GET /brands?sort=-name → sort from Z to A
+    GET /brands?name=Apple → show only Apple brand
+    The response includes:
+          
+    total: total number of matching brands
+    page: current page
+    data: the list of brands
+    This makes the API easier to use in dashboards, frontend pages, and product filters.
+  '''
+  
+  request: {
+    url: {{url}}/brands/
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:06:59 GMT
+      etag: W/"1e87-hcOeQc8EOGLSpUJOMDqILvJKApQ"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::d8mwx-1791655619133-b42e4968475d
+      transfer-encoding: chunked
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "total": 15,
+          "page": 1,
+          "data": [
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/2026-10-01__2kHR__logo_Gmrkp8g8k.jpg",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/bW68/Brands/ih1f/2026-10-01__2kHR__logo_Gmrkp8g8k.jpg"
+              },
+              "_id": "6abeb58ba2477cf37e7b4673",
+              "name": "Nokhba Tech",
+              "slug": "nokhba-tech",
+              "customId": "ih1f",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8482919daf950d1127540e",
+              "createdAt": "2026-10-01T19:33:31.473Z",
+              "updatedAt": "2026-10-01T19:33:31.473Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/2026-10-01__6pZx__logo_me7PqXGV8.jpg",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/UlRF/Brands/wUmI/2026-10-01__6pZx__logo_me7PqXGV8.jpg"
+              },
+              "_id": "6abeb5d8a2477cf37e7b4679",
+              "name": "Al Ameed Computers",
+              "slug": "al-ameed-computers",
+              "customId": "wUmI",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8494836fbdd1f62e37174a",
+              "createdAt": "2026-10-01T19:34:48.699Z",
+              "updatedAt": "2026-10-01T19:34:48.699Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/2026-10-01__Ex-b__logo_srP1_9gJ-.jpg",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/MKT3/Brands/RF6P/2026-10-01__Ex-b__logo_srP1_9gJ-.jpg"
+              },
+              "_id": "6abeb60fa2477cf37e7b467f",
+              "name": "Hams",
+              "slug": "hams",
+              "customId": "RF6P",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8483739daf950d11275412",
+              "createdAt": "2026-10-01T19:35:43.262Z",
+              "updatedAt": "2026-10-01T19:35:43.262Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/2026-10-01__9pl2__logo_n317IeXbp.jpg",
+                "filePath": "/Uploads/Categories/WyZG/SubCategories/3mQX/Brands/GkVN/2026-10-01__9pl2__logo_n317IeXbp.jpg"
+              },
+              "_id": "6abeb630a2477cf37e7b4685",
+              "name": "Daqeq Smart",
+              "slug": "daqeq-smart",
+              "customId": "GkVN",
+              "categoryId": "6a847f29dcab826cf492edfa",
+              "subCategoryId": "6a8483929daf950d11275416",
+              "createdAt": "2026-10-01T19:36:16.266Z",
+              "updatedAt": "2026-10-01T19:36:16.266Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/2026-10-01__BQEo__logo_iJetRRkOH.jpg",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/jzWc/Brands/ZSQ7/2026-10-01__BQEo__logo_iJetRRkOH.jpg"
+              },
+              "_id": "6abeb66ba2477cf37e7b468b",
+              "name": "Wahat Al Akhdar",
+              "slug": "wahat-al-akhdar",
+              "customId": "ZSQ7",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a84841e9daf950d1127541a",
+              "createdAt": "2026-10-01T19:37:15.992Z",
+              "updatedAt": "2026-10-01T19:37:15.992Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/2026-10-01__rOH2__logo_to3A35MPy.jpg",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/PmTg/Brands/qrqC/2026-10-01__rOH2__logo_to3A35MPy.jpg"
+              },
+              "_id": "6abeb689a2477cf37e7b4691",
+              "name": "Dar Al Khashab",
+              "slug": "dar-al-khashab",
+              "customId": "qrqC",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a8484399daf950d1127541e",
+              "createdAt": "2026-10-01T19:37:45.767Z",
+              "updatedAt": "2026-10-01T19:37:45.767Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/2026-10-01__U_2u__logo_khPoO5Xjy.jpg",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/d69m/Brands/eOw3/2026-10-01__U_2u__logo_khPoO5Xjy.jpg"
+              },
+              "_id": "6abeb6a9a2477cf37e7b4697",
+              "name": "Matbakh Al Asala",
+              "slug": "matbakh-al-asala",
+              "customId": "eOw3",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a8484579daf950d11275422",
+              "createdAt": "2026-10-01T19:38:17.884Z",
+              "updatedAt": "2026-10-01T19:38:17.884Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/2026-10-01__q0dT__logo_tpWHlY1uO.jpg",
+                "filePath": "/Uploads/Categories/oZFm/SubCategories/8zVI/Brands/F_hr/2026-10-01__q0dT__logo_tpWHlY1uO.jpg"
+              },
+              "_id": "6abeb6c7a2477cf37e7b469d",
+              "name": "Zakhrafa",
+              "slug": "zakhrafa",
+              "customId": "F_hr",
+              "categoryId": "6a847f50dcab826cf492edfe",
+              "subCategoryId": "6a84846d9daf950d11275426",
+              "createdAt": "2026-10-01T19:38:47.133Z",
+              "updatedAt": "2026-10-01T19:38:47.133Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/2026-10-01__0L6k__logo_pVJlOP8Vzs.jpg",
+                "filePath": "/Uploads/Categories/txv9/SubCategories/kztV/Brands/yZ0L/2026-10-01__0L6k__logo_pVJlOP8Vzs.jpg"
+              },
+              "_id": "6abeb6f5a2477cf37e7b46a3",
+              "name": "Anaqa",
+              "slug": "anaqa",
+              "customId": "yZ0L",
+              "categoryId": "6a847f80dcab826cf492ee06",
+              "subCategoryId": "6a84852d9daf950d1127543a",
+              "createdAt": "2026-10-01T19:39:33.319Z",
+              "updatedAt": "2026-10-01T19:39:33.319Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/2026-10-01__2VIv__logo_oF4vFV7Q0.jpg",
+                "filePath": "/Uploads/Categories/txv9/SubCategories/QCT7/Brands/avw0/2026-10-01__2VIv__logo_oF4vFV7Q0.jpg"
+              },
+              "_id": "6abeb712a2477cf37e7b46a9",
+              "name": "Khutwa",
+              "slug": "khutwa",
+              "customId": "avw0",
+              "categoryId": "6a847f80dcab826cf492ee06",
+              "subCategoryId": "6a8485469daf950d1127543e",
+              "createdAt": "2026-10-01T19:40:02.034Z",
+              "updatedAt": "2026-10-01T19:40:02.034Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/2026-10-01__iHiL__logo_qaiDV1lRq.jpg",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/HHw_/Brands/AMHe/2026-10-01__iHiL__logo_qaiDV1lRq.jpg"
+              },
+              "_id": "6abeb756a2477cf37e7b46af",
+              "name": "Bustan Al Khair",
+              "slug": "bustan-al-khair",
+              "customId": "AMHe",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484a49daf950d1127542a",
+              "createdAt": "2026-10-01T19:41:10.206Z",
+              "updatedAt": "2026-10-01T19:41:10.206Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/2026-10-01__DHqg__logo_0GW2ZxFDQ.jpg",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/hxU9/Brands/GYRv/2026-10-01__DHqg__logo_0GW2ZxFDQ.jpg"
+              },
+              "_id": "6abeb777a2477cf37e7b46b5",
+              "name": "Furn Al Dar",
+              "slug": "furn-al-dar",
+              "customId": "GYRv",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484bb9daf950d1127542e",
+              "createdAt": "2026-10-01T19:41:43.024Z",
+              "updatedAt": "2026-10-01T19:41:43.024Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/2026-10-01__FAen__logo_7ZrREHVNI.jpg",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/yzeS/Brands/8o2J/2026-10-01__FAen__logo_7ZrREHVNI.jpg"
+              },
+              "_id": "6abeb79aa2477cf37e7b46bb",
+              "name": "Rawaa",
+              "slug": "rawaa",
+              "customId": "8o2J",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484d69daf950d11275432",
+              "createdAt": "2026-10-01T19:42:18.535Z",
+              "updatedAt": "2026-10-01T19:42:18.535Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/2026-10-01__aCva__logo_mgd0W0u5LO.jpg",
+                "filePath": "/Uploads/Categories/OPT4/SubCategories/gUVE/Brands/eDVI/2026-10-01__aCva__logo_mgd0W0u5LO.jpg"
+              },
+              "_id": "6abeb7c2a2477cf37e7b46c1",
+              "name": "Qarmash",
+              "slug": "qarmash",
+              "customId": "eDVI",
+              "categoryId": "6a847f6cdcab826cf492ee02",
+              "subCategoryId": "6a8484e99daf950d11275436",
+              "createdAt": "2026-10-01T19:42:58.372Z",
+              "updatedAt": "2026-10-01T19:42:58.372Z",
+              "__v": 0
+            },
+            {
+              "logo": {
+                "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png",
+                "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png"
+              },
+              "_id": "6aca7df5a40b96529377a300",
+              "name": "Shanta1",
+              "slug": "shanta1",
+              "customId": "zoqd",
+              "categoryId": "6aca48efef0bfa241a51c8c3",
+              "subCategoryId": "6aca491def0bfa241a51c8c7",
+              "createdAt": "2026-10-10T18:03:33.331Z",
+              "updatedAt": "2026-10-10T18:05:02.296Z",
+              "__v": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

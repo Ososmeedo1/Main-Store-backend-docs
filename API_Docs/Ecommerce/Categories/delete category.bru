@@ -1,0 +1,64 @@
+meta {
+  name: delete category
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{url}}/categories/delete/6aca47afef0bfa241a51c8b4
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Delete category
+  description: Removes a category completely from the system. This also removes the category image from cloud storage. It's important to note that deleting a category may leave sub-categories and products without a parent category, so you should consider your data relationships before performing this action.
+  
+  request: {
+    url: {{url}}/categories/delete/6aca47afef0bfa241a51c8b4
+    method: DELETE
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 43
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:15:29 GMT
+      etag: W/"2b-jGZCifyou1+AVjaIxrakpy9zPDM"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::79tsq-1791641729335-bbd2b372902b
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "category deleted successfully"
+        }
+      '''
+    }
+  }
+}

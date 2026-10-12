@@ -1,0 +1,109 @@
+meta {
+  name: add to cart
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/carts/add/6aca805f26b507a8773ecd91
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "quantity": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add product to cart
+  description: '''
+    This endpoint adds a product to the cart.
+        
+    It checks the product and user
+    It adds the item to the cart
+    It may update quantity if already exists
+    Simple meaning: this API is used when a user adds an item to the cart.
+  '''
+  
+  request: {
+    url: {{url}}/carts/add/6aca805f26b507a8773ecd91
+    method: POST
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "quantity": 1
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 561
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:18:23 GMT
+      etag: W/"231-AVLYx5rq1cfhUM0aJ6x2pARIOf8"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::2v6g4-1791656303449-bcfb2e9f8fb0
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Product has been added to cart",
+          "data": {
+            "userId": {
+              "_id": "6aca4785ef0bfa241a51c8a8",
+              "username": "osama1",
+              "email": "osama1@gmail.com",
+              "userType": "Admin",
+              "age": 30,
+              "gender": "male",
+              "phone": "01000000001",
+              "isEmailVerified": false,
+              "isMarkedAsDeleted": false,
+              "createdAt": "2026-10-10T14:11:17.605Z",
+              "updatedAt": "2026-10-10T18:16:58.463Z"
+            },
+            "products": [
+              {
+                "productId": "6aca805f26b507a8773ecd91",
+                "quantity": 1,
+                "price": 500,
+                "_id": "6aca816f26b507a8773ecde1"
+              }
+            ],
+            "_id": "6aca816f26b507a8773ecde0",
+            "createdAt": "2026-10-10T18:18:23.870Z",
+            "updatedAt": "2026-10-10T18:18:23.870Z"
+          }
+        }
+      '''
+    }
+  }
+}

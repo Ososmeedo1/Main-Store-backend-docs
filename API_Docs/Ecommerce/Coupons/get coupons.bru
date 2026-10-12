@@ -1,0 +1,112 @@
+meta {
+  name: get coupons
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/coupons/?isEnabled=true
+  body: none
+  auth: inherit
+}
+
+params:query {
+  isEnabled: true
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get enabled coupons
+  description: '''
+    This endpoint gets all available coupons.
+        
+    It uses ApiFeatures, so it supports:
+        
+    pagination
+    filtering
+    sorting
+    searching
+    Examples:
+        
+    GET /coupons?page=1&limit=10
+    GET /coupons?search=summer
+    GET /coupons?sort=-discount
+    Simple meaning: this API is used to show coupon offers to users.
+  '''
+  
+  request: {
+    url: {{url}}/coupons/?isEnabled=true
+    method: GET
+    mode: none
+    params:query: {
+      isEnabled: true
+    }
+  
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 451
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:20:31 GMT
+      etag: W/"1c3-PvXb4DU2ADFbylGKzcS3H2MQW8A"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::x9qk6-1791656430711-5888e6df61ef
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "page": 1,
+          "total": 1,
+          "data": [
+            {
+              "_id": "6aca81d326b507a8773ecdef",
+              "couponCode": "code7",
+              "couponAmount": 100,
+              "couponType": "Fixed",
+              "from": "2026-10-09T21:00:00.000Z",
+              "till": "2027-09-25T21:00:00.000Z",
+              "Users": [
+                {
+                  "userId": "6aca4785ef0bfa241a51c8a8",
+                  "maxCount": 5,
+                  "usageCount": 0,
+                  "_id": "6aca81d326b507a8773ecdf0"
+                }
+              ],
+              "isEnabled": true,
+              "addedBy": "6aca4785ef0bfa241a51c8a8",
+              "createdAt": "2026-10-10T18:20:03.667Z",
+              "updatedAt": "2026-10-10T18:20:03.667Z"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

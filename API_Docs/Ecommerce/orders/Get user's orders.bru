@@ -1,0 +1,99 @@
+meta {
+  name: Get user's orders
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/orders
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get user's orders
+  description: '''
+    This endpoint gets all orders for the logged-in user.
+        
+    It returns the user’s order history
+    It may include statuses and totals
+    Simple meaning: this API is used to view a user’s order history.
+  '''
+  
+  request: {
+    url: {{url}}/orders
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 552
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:28:24 GMT
+      etag: W/"228-vUetz2xE0oNvECYu271qGViB2QE"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::rwzpd-1791656903828-be8f914f2177
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "total": 1,
+          "data": [
+            {
+              "_id": "6aca839f4ff66622d81e08ca",
+              "userId": "6aca4785ef0bfa241a51c8a8",
+              "products": [
+                {
+                  "productId": "6aca805f26b507a8773ecd91",
+                  "quantity": 4,
+                  "price": 500,
+                  "_id": "6aca816f26b507a8773ecde1"
+                }
+              ],
+              "fromCart": true,
+              "address": "Cairo",
+              "contactNumber": "01000000001",
+              "subTotal": 2000,
+              "shippingFee": 30,
+              "VAT": 30,
+              "couponId": "6aca81d326b507a8773ecdef",
+              "total": 1900,
+              "estimatedDeliveryDate": "2026-10-17T00:00:00.000Z",
+              "paymentMethod": "cash",
+              "orderStatus": "placed",
+              "createdAt": "2026-10-10T18:27:43.692Z",
+              "updatedAt": "2026-10-10T18:27:43.692Z"
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

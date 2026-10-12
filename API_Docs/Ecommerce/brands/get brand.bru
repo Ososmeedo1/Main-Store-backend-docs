@@ -1,0 +1,95 @@
+meta {
+  name: get brand
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/brands/specific?name=Shanta
+  body: none
+  auth: inherit
+}
+
+params:query {
+  name: Shanta
+}
+
+headers {
+  "token ": {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get specific brand
+  description: '''
+    This endpoint gets one specific brand from the database.
+        
+    You can search by brand id, name, or slug
+    It returns the matching brand if it exists
+    If the brand is not found, it returns an error
+    In simple words: this API is used when you want to view one brand only, such as a single brand by its name or unique ID.
+  '''
+  
+  request: {
+    url: {{url}}/brands/specific?name=Shanta
+    method: GET
+    mode: none
+    params:query: {
+      name: Shanta
+    }
+  
+    headers: {
+      "token ": {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 579
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:04:13 GMT
+      etag: W/"243-3Jtf+Dz1V8AVKzY86HQjUYzNgW0"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::7bnlg-1791655451298-7966de9c06cc
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": {
+            "logo": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png",
+              "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/2026-10-10__Oh9t__Screenshot_2026-10-10_210326_NM3UwrNWH.png"
+            },
+            "_id": "6aca7df5a40b96529377a300",
+            "name": "Shanta",
+            "slug": "shanta",
+            "customId": "zoqd",
+            "categoryId": "6aca48efef0bfa241a51c8c3",
+            "subCategoryId": "6aca491def0bfa241a51c8c7",
+            "createdAt": "2026-10-10T18:03:33.331Z",
+            "updatedAt": "2026-10-10T18:03:33.331Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

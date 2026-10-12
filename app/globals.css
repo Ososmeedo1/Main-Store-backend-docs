@@ -1,0 +1,476 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ================= Mica — semantic tokens =================
+   Components must use these variables (or the Tailwind utilities mapped
+   below), never raw hex. :root = light mica, .dark = dark mica.
+   Every text/background pair was measured (scripts/check-contrast.js) at
+   WCAG 2.2 AA: body text ≥4.5:1, large/UI ≥3:1, focus ≥3:1. Where the spec's
+   suggested values failed, lightness was adjusted — see DESIGN_SYSTEM.md. */
+:root {
+  color-scheme: light;
+  --mica-base: #f3f3f5;
+  --mica-tint: rgba(0, 103, 192, 0.08);
+  --surface-content: #ffffff;
+  --surface-strong: #ececf0;
+  --surface-inset: #f4f4f6;
+  --surface-elevated: #ffffff;
+  --code-bg: #f4f4f6;
+  --primary: #0067c0;
+  --primary-solid: #0067c0;
+  --primary-subtle: #e5eff9;
+  --text-primary: #1b1b1f;
+  --text-secondary: #454b54;
+  --text-tertiary: #545a64;
+  --text-inverse: #ffffff;
+  --border: #e0e0e6;
+  --border-strong: #767676;
+  --border-bottom: #4d4d55;
+  --focus-ring: #0067c0;
+  --status-success: #047857;
+  --status-warning: #7a4a00;
+  --status-danger: #be123c;
+  --status-info: #0e7490;
+  --method-get-bg: #dcfce7;
+  --method-get-fg: #166534;
+  --method-post-bg: #dbeafe;
+  --method-post-fg: #1e40af;
+  --method-put-bg: #fef3c7;
+  --method-put-fg: #92400e;
+  --method-patch-bg: #ccfbf1;
+  --method-patch-fg: #115e59;
+  --method-delete-bg: #ffe4e6;
+  --method-delete-fg: #9f1239;
+  --shadow-base: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  color-scheme: dark;
+  --mica-base: #202024;
+  --mica-tint: rgba(96, 165, 250, 0.08);
+  --surface-content: #2b2b30;
+  --surface-strong: #3a3a41;
+  --surface-inset: #232328;
+  --surface-elevated: #333339;
+  --code-bg: #000000;
+  --primary: #60a5fa;
+  --primary-solid: #60a5fa;
+  --primary-subtle: #1c2f4d;
+  --text-primary: #f5f5f7;
+  --text-secondary: #c2c8d4;
+  --text-tertiary: #a9afbd;
+  --text-inverse: #06263f;
+  --border: #45454e;
+  --border-strong: #9aa0ae;
+  --border-bottom: #c2c8d4;
+  --focus-ring: #60a5fa;
+  --status-success: #34d399;
+  --status-warning: #fbbf24;
+  --status-danger: #fb7185;
+  --status-info: #22d3ee;
+  --method-get-bg: #123f2b;
+  --method-get-fg: #a7f3d0;
+  --method-post-bg: #1e3a8a;
+  --method-post-fg: #bfdbfe;
+  --method-put-bg: #4a2f10;
+  --method-put-fg: #fde68a;
+  --method-patch-bg: #134e4a;
+  --method-patch-fg: #99f6e4;
+  --method-delete-bg: #4c1220;
+  --method-delete-fg: #fecdd3;
+  --shadow-base: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+@theme inline {
+  --color-mica-base: var(--mica-base);
+  --color-surface-content: var(--surface-content);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-inset: var(--surface-inset);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-primary: var(--primary);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --shadow-base: var(--shadow-base);
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@theme {
+  --radius-xs: 8px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Mica base: opaque tinted neutral + one static soft radial wash (≤8%)
+     in the top corner. No blur, no animation. */
+  background:
+    radial-gradient(640px 320px at 100% 0%, var(--mica-tint), transparent 70%),
+    var(--mica-base);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 16px;
+  line-height: 24px;
+  /* Safety net only — the layout itself must not overflow (see QA checklist). */
+  overflow-x: clip;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- mica primitives (states per component rules) ----------
+   Layered BELOW utilities so responsive display switches (`hidden`, `sm:*`,
+   `dark:*`) always win over these display rules. Depth comes from tone
+   steps + 1px borders. Base shadow is reserved for elevated surfaces
+   (menus, dialogs, tooltips, palette) — never for content cards. */
+@layer components {
+.mica-card {
+  background: var(--surface-content);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  transition: background-color 150ms ease-out, border-color 150ms ease-out, box-shadow 150ms ease-out;
+  min-width: 0;
+}
+a.mica-card:hover {
+  background: var(--surface-content);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-base);
+}
+
+.mica-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px 16px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-content);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background-color 150ms ease-out, border-color 150ms ease-out, filter 150ms ease-out;
+  cursor: pointer;
+}
+/* One hover language for every button: border turns accent, background
+   steps one tone (solid buttons darken instead). Active presses inward. */
+.mica-btn:hover {
+  background: var(--surface-strong);
+  border-color: var(--primary);
+}
+.mica-btn:active {
+  background: var(--surface-inset);
+  border-color: var(--primary);
+}
+.mica-btn:disabled {
+  cursor: not-allowed;
+  color: var(--text-secondary);
+  border-style: dashed;
+  background: var(--surface-content);
+}
+.mica-btn-primary {
+  background: var(--primary-solid);
+  border-color: var(--primary-solid);
+  color: var(--text-inverse);
+}
+.mica-btn-primary:hover {
+  background: var(--primary-solid);
+  border-color: var(--primary-solid);
+  filter: brightness(0.92);
+}
+.mica-btn-primary:active {
+  background: var(--primary-solid);
+  border-color: var(--primary-solid);
+  filter: brightness(0.85);
+}
+.mica-btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+.mica-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+/* Small icon action (navbar, copy buttons, dialog close): 36px ghost,
+   15px icon, borderless until hover. Still above the 24px target minimum. */
+.mica-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
+  border-radius: var(--radius-xs);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  transition: background-color 150ms ease-out, color 150ms ease-out, border-color 150ms ease-out;
+  cursor: pointer;
+  flex: none;
+}
+.mica-icon-btn:hover {
+  background: var(--surface-strong);
+  color: var(--text-primary);
+  border-color: var(--primary);
+}
+.mica-icon-btn:active {
+  background: var(--surface-inset);
+  color: var(--text-primary);
+  border-color: var(--primary);
+}
+
+.mica-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 16px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-strong);
+  border-bottom: 2px solid var(--border-bottom);
+  background: var(--surface-content);
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+.mica-input::placeholder {
+  color: var(--text-tertiary);
+}
+.mica-input:hover {
+  background: var(--surface-strong);
+}
+.mica-input:disabled {
+  cursor: not-allowed;
+  border-style: dashed;
+  color: var(--text-secondary);
+}
+.mica-input[aria-invalid="true"] {
+  border-color: var(--status-danger);
+  border-bottom-color: var(--status-danger);
+}
+.mica-input:focus {
+  border-bottom-color: var(--primary);
+}
+select.mica-input {
+  width: auto;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Scroll well: wide content scrolls inside, never the page. Always paired
+   with tabindex="0" + aria-label in markup for keyboard users. */
+.scroll-well {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--surface-inset);
+}
+.scroll-well table {
+  min-width: 520px;
+}
+
+/* Method tags: small flat tinted tags, bold label text. The label carries
+   meaning, never color alone. */
+.mica-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.method-get { background: var(--method-get-bg); color: var(--method-get-fg); }
+.method-post { background: var(--method-post-bg); color: var(--method-post-fg); }
+.method-put { background: var(--method-put-bg); color: var(--method-put-fg); }
+.method-patch { background: var(--method-patch-bg); color: var(--method-patch-fg); }
+.method-delete { background: var(--method-delete-bg); color: var(--method-delete-fg); }
+
+/* Windows-11-style navigation: 3px accent pill + strong background. */
+.mica-navlink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  border-radius: var(--radius-xs);
+  transition: background-color 150ms ease-out;
+  overflow-wrap: anywhere;
+  position: relative;
+}
+.mica-navlink:hover {
+  background: var(--surface-strong);
+}
+.mica-navlink-active {
+  background: var(--surface-strong);
+  font-weight: 600;
+}
+.mica-navlink-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+
+/* Glossary term: semibold + dotted underline + tooltip, never color alone. */
+.term {
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+  font-weight: 600;
+}
+
+/* Elevated surfaces only: menus, dialogs, tooltips, palette. */
+.mica-elevated {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+
+/* spinner: fixed box with "Loading..." text alongside in markup */
+.mica-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  animation: mica-spin 800ms linear infinite;
+  flex: none;
+}
+@keyframes mica-spin {
+  to { transform: rotate(360deg); }
+}
+} /* end @layer components */
+
+/* shiki code blocks: calm themes on the inset surface (pure black in dark),
+   scroll inside their own well */
+pre.shiki {
+  border-radius: 0;
+  padding: 16px;
+  margin: 0;
+  overflow: auto;
+  max-width: 100%;
+  border: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  background: var(--code-bg) !important;
+}
+pre.shiki code {
+  background: transparent !important;
+  overflow-wrap: normal;
+}
+
+/* Content links are always underlined, never color alone. */
+article a, p a, li a, td a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* focus-visible: 2px accent ring with 2px offset on everything interactive */
+:where(a, button, input, select, textarea, [tabindex], summary):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Parameter tables collapse into stacked rows on small screens. Cells carry
+   data-label attributes so no context is lost. */
+@media (max-width: 639px) {
+  .stack-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .stack-table tr {
+    display: block;
+    border-bottom: 1px solid var(--border);
+  }
+  .stack-table tr:last-child {
+    border-bottom: 0;
+  }
+  .stack-table td {
+    display: block;
+    border: 0;
+  }
+  .stack-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+  }
+}
+
+/* Windows High Contrast Mode: system colors, borders stay visible, meaning
+   never comes from background images. */
+@media (forced-colors: active) {
+  :where(a, button, input, select, textarea, [tabindex], summary):focus-visible {
+    outline-color: Highlight;
+  }
+  a {
+    color: LinkText;
+  }
+  .mica-btn-primary {
+    background: ButtonText;
+    color: ButtonFace;
+    border-color: ButtonText;
+    forced-color-adjust: none;
+  }
+  .mica-btn:disabled, .mica-input:disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+  .mica-badge, .mica-card, .mica-input, .scroll-well, .mica-elevated {
+    border-color: CanvasText;
+  }
+  .mica-navlink-active::before {
+    background: Highlight;
+  }
+}
+
+/* Extra contrast preference: stronger text and structure lines. */
+@media (prefers-contrast: more) {
+  :root, .dark {
+    --border: currentColor;
+  }
+  body {
+    color: var(--text-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

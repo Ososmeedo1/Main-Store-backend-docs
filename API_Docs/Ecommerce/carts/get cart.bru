@@ -1,0 +1,85 @@
+meta {
+  name: get cart
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{url}}/carts
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get cart
+  description: '''
+    This endpoint returns the current cart.
+        
+    It lists the products in the cart
+    It may show total price or quantities
+    Simple meaning: this API is used to view the user’s shopping cart.
+  '''
+  
+  request: {
+    url: {{url}}/carts
+    method: GET
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 286
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:19:07 GMT
+      etag: W/"11e-4Z2WoNEGcI3drYUKh+t+cIpm8Gg"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::9qbtm-1791656346792-50327bf963f8
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": {
+            "_id": "6aca816f26b507a8773ecde0",
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "products": [
+              {
+                "productId": "6aca805f26b507a8773ecd91",
+                "quantity": 4,
+                "price": 500,
+                "_id": "6aca816f26b507a8773ecde1"
+              }
+            ],
+            "createdAt": "2026-10-10T18:18:23.870Z",
+            "updatedAt": "2026-10-10T18:18:49.292Z"
+          }
+        }
+      '''
+    }
+  }
+}

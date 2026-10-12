@@ -1,0 +1,86 @@
+meta {
+  name: accept or reject review
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{url}}/reviews/action/6aca84564ff66622d81e090b
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "action": "accepted"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Accept or reject review
+  description: Moderates a product review submitted by a customer. This endpoint allows an admin to either approve a review to make it publicly visible to other customers, or reject it if it violates guidelines or is inappropriate. Once you choose to approve or reject, that status is recorded. Approved reviews appear on the product page, while rejected reviews are hidden from public view.
+  
+  request: {
+    url: {{url}}/reviews/action/6aca84564ff66622d81e090b
+    method: PATCH
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "action": "accepted"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 317
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:31:37 GMT
+      etag: W/"13d-ye2cH3+aWF4NRhXGKQFwSbmApmA"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::hr62m-1791657096623-1eb0670cb357
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Review has been accepted successfully",
+          "data": {
+            "_id": "6aca84564ff66622d81e090b",
+            "userId": "6aca4785ef0bfa241a51c8a8",
+            "productId": "6aca805f26b507a8773ecd91",
+            "reviewRating": 5,
+            "reviewBody": "Good quality",
+            "reviewStatus": "accepted",
+            "createdAt": "2026-10-10T18:30:46.927Z",
+            "updatedAt": "2026-10-10T18:31:36.930Z"
+          }
+        }
+      '''
+    }
+  }
+}

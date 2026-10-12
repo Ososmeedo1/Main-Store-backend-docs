@@ -1,0 +1,87 @@
+meta {
+  name: get specific sub category
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/subcategories/specific?id=6aca491def0bfa241a51c8c7
+  body: none
+  auth: inherit
+}
+
+params:query {
+  id: 6aca491def0bfa241a51c8c7
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Get specific sub-category
+  description: This endpoint gets one specific sub-category from the database. You can search by sub-category id, name, or slug It returns the matching sub-category if it exists If the sub-category is not found, it returns an error In simple words: this API is used when you want to view one sub-category only, such as a single sub-category by its ID or name.
+  
+  request: {
+    url: {{url}}/subcategories/specific?id=6aca491def0bfa241a51c8c7
+    method: GET
+    mode: none
+    params:query: {
+      id: 6aca491def0bfa241a51c8c7
+    }
+  
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      age: 0
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 517
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:23:21 GMT
+      etag: W/"205-BAgu5efbGb00MyJbTkD0zerKLdk"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::nq9rw-1791642198933-da998ae78d30
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "done",
+          "data": {
+            "Image": {
+              "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png",
+              "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/2026-10-10__TjRw__Screenshot_2026-10-10_171758_pqFYTlYHY.png"
+            },
+            "_id": "6aca491def0bfa241a51c8c7",
+            "name": "Backpack",
+            "slug": "backpack",
+            "customId": "URS7",
+            "categoryId": "6aca48efef0bfa241a51c8c3",
+            "createdAt": "2026-10-10T14:18:05.426Z",
+            "updatedAt": "2026-10-10T14:18:05.426Z",
+            "__v": 0
+          }
+        }
+      '''
+    }
+  }
+}

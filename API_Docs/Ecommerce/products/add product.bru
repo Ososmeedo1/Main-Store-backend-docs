@@ -1,0 +1,148 @@
+meta {
+  name: add product
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/products/add?category=6aca48efef0bfa241a51c8c3&subCategory=6aca491def0bfa241a51c8c7&brand=6aca7df5a40b96529377a300
+  body: multipartForm
+  auth: inherit
+}
+
+params:query {
+  category: 6aca48efef0bfa241a51c8c3
+  subCategory: 6aca491def0bfa241a51c8c7
+  brand: 6aca7df5a40b96529377a300
+}
+
+headers {
+  token: {{token}}
+}
+
+body:multipart-form {
+  title: Big Shanta
+  overview: Leather Shanta
+  specs: '''
+    {
+          "weight": "1kg",
+          "material": "Leather",
+          "capacity": "27L"
+        }
+  '''
+  price: 500.00
+  stock: 150
+  images: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 210326.png) @contentType(image/png)
+  ~images: 
+  ~images: 
+  ~images: 
+  ~images: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Add product
+  description: Creates a new product with complete details. This includes the product title, description, specifications (like size, color, features), pricing, discount information, stock quantity, and multiple product images. The system automatically calculates the final price after applying discounts, generates a slug from the title, and stores images in cloud storage. Each product is automatically linked to its brand, sub-category, and category.
+  
+  request: {
+    url: {{url}}/products/add?category=6aca48efef0bfa241a51c8c3&subCategory=6aca491def0bfa241a51c8c7&brand=6aca7df5a40b96529377a300
+    method: POST
+    mode: multipartForm
+    params:query: {
+      category: 6aca48efef0bfa241a51c8c3
+      subCategory: 6aca491def0bfa241a51c8c7
+      brand: 6aca7df5a40b96529377a300
+    }
+  
+    headers: {
+      token: {{token}}
+    }
+  
+    body:multipart-form: {
+      title: Big Shanta
+      overview: Leather Shanta
+      specs: '''
+        {
+              "weight": "1kg",
+              "material": "Leather",
+              "capacity": "27L"
+            }
+      '''
+      price: 500.00
+      stock: 150
+      images: @file(C:\Users\ososm\OneDrive\Pictures\Screenshots\Screenshot 2026-10-10 210326.png) @contentType(image/png)
+      ~images: 
+      ~images: 
+      ~images: 
+      ~images: 
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 909
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:13:51 GMT
+      etag: W/"38d-m1MRbUEc9ajPKj1CM3t8MgH5koE"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::fzjjr-1791656027967-43bafa38c554
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Product was added successfully",
+          "data": {
+            "title": "Big Shanta",
+            "overview": "Leather Shanta",
+            "specs": {
+              "weight": "1kg",
+              "material": "Leather",
+              "capacity": "27L"
+            },
+            "price": 500,
+            "appliedDiscount": {
+              "amount": 0,
+              "type": "Percentage"
+            },
+            "stock": 150,
+            "rating": 0,
+            "Images": {
+              "URLs": [
+                {
+                  "fileUrl": "https://ik.imagekit.io/ososmeedo/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/Products/7IXj/2026-10-10__03rBScreenshot_2026-10-10_210326_69vXXD6p6.png",
+                  "filePath": "/Uploads/Categories/47Db/SubCategories/URS7/Brands/zoqd/Products/7IXj/2026-10-10__03rBScreenshot_2026-10-10_210326_69vXXD6p6.png",
+                  "_id": "6aca805f26b507a8773ecd92"
+                }
+              ],
+              "customId": "7IXj"
+            },
+            "categoryId": "6aca48efef0bfa241a51c8c3",
+            "subCategoryId": "6aca491def0bfa241a51c8c7",
+            "brandId": "6aca7df5a40b96529377a300",
+            "_id": "6aca805f26b507a8773ecd91",
+            "slug": "big_shanta",
+            "appliedPrice": 500,
+            "createdAt": "2026-10-10T18:13:51.860Z",
+            "updatedAt": "2026-10-10T18:13:51.860Z"
+          }
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,131 @@
+meta {
+  name: register
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{url}}/users/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "osama1",
+    "email": "osama1@gmail.com",
+    "password": "Osama123#",
+    "age": 30,
+    "phone": "01000000001",
+    "userType": "Admin",
+    "gender": "male",
+    "country": "Egypt",
+    "city": "Cairo",
+    "postalCode": "848481",
+    "buildingNumber": "3",
+    "floorNumber": 5,
+    "addressLabel": "home"
+    
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Register
+  description: '''
+    This endpoint creates a new user account.
+      
+    It receives username, email, password, and address details
+    It validates the data
+    It creates the user and default address
+    Simple meaning: this API is used when a new user signs up.
+  '''
+  
+  request: {
+    url: {{url}}/users/register
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "username": "osama1",
+        "email": "osama1@gmail.com",
+        "password": "Osama123#",
+        "age": 30,
+        "phone": "01000000001",
+        "userType": "Admin",
+        "gender": "male",
+        "country": "Egypt",
+        "city": "Cairo",
+        "postalCode": "848481",
+        "buildingNumber": "3",
+        "floorNumber": 5,
+        "addressLabel": "home"
+          
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 679
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 14:11:17 GMT
+      etag: W/"2a7-owSTilhNgkzLwko14qL7f5Kw9i4"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::5vqgf-1791641476597-78d263634c8a
+    }
+  
+    status: {
+      code: 201
+      text: Created
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "registeration has been done successfully",
+          "data": {
+            "userResponse": {
+              "username": "osama1",
+              "email": "osama1@gmail.com",
+              "userType": "Admin",
+              "age": 30,
+              "gender": "male",
+              "phone": "01000000001",
+              "isEmailVerified": false,
+              "isMarkedAsDeleted": false,
+              "_id": "6aca4785ef0bfa241a51c8a8",
+              "createdAt": "2026-10-10T14:11:17.605Z",
+              "updatedAt": "2026-10-10T14:11:17.605Z"
+            },
+            "newAddress": {
+              "userId": "6aca4785ef0bfa241a51c8a8",
+              "country": "Egypt",
+              "city": "Cairo",
+              "postalCode": 848481,
+              "buildingNumber": "3",
+              "floorNumber": 5,
+              "addressLabel": "home",
+              "isDefault": true,
+              "isMarkedAsDeleted": false,
+              "_id": "6aca4785ef0bfa241a51c8a9",
+              "createdAt": "2026-10-10T14:11:17.860Z",
+              "updatedAt": "2026-10-10T14:11:17.860Z",
+              "__v": 0
+            }
+          }
+        }
+      '''
+    }
+  }
+}

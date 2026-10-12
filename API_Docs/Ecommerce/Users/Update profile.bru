@@ -1,0 +1,82 @@
+meta {
+  name: Update profile
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{url}}/users/update
+  body: json
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "password": "Osama321#"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Update profile's data
+  description: '''
+    This endpoint updates the logged-in user’s information.
+        
+    It can update password, email, username, phone, and other account fields
+    It can also update the default address
+    Simple meaning: this API is used when a user edits their profile.
+  '''
+  
+  request: {
+    url: {{url}}/users/update
+    method: PUT
+    mode: json
+    headers: {
+      token: {{token}}
+    }
+  
+    body:json: {
+      {
+        "password": "Osama321#"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 35
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:16:58 GMT
+      etag: W/"23-SB6bd/JFSSebU5Ep0vMXK6woT3Q"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::ljn4h-1791656218159-4ec67095800b
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "data has been updated"
+        }
+      '''
+    }
+  }
+}

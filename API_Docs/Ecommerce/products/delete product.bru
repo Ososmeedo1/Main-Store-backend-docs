@@ -1,0 +1,64 @@
+meta {
+  name: delete product
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{url}}/products/6aca805f26b507a8773ecd91
+  body: none
+  auth: inherit
+}
+
+headers {
+  token: {{token}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: Delete product
+  description: Permanently removes a product from the system. All product images are deleted from cloud storage along with the entire product folder. This deletion doesn't affect existing orders that contain this product, but it may affect shopping carts and wishlists.
+  
+  request: {
+    url: {{url}}/products/6aca805f26b507a8773ecd91
+    method: DELETE
+    mode: none
+    headers: {
+      token: {{token}}
+    }
+  }
+  
+  response: {
+    headers: {
+      access-control-allow-origin: *
+      cache-control: public, max-age=0, must-revalidate
+      content-length: 51
+      content-type: application/json; charset=utf-8
+      date: Sat, 10 Oct 2026 18:33:54 GMT
+      etag: W/"33-iGmraY9IUzyL/pFCEZWfir01uxQ"
+      server: Vercel
+      strict-transport-security: max-age=63072000; includeSubDomains; preload
+      x-powered-by: Express
+      x-vercel-cache: MISS
+      x-vercel-id: fra1::iad1::hcffr-1791657234375-50b26628fd2d
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "message": "Product has been deleted successfully"
+        }
+      '''
+    }
+  }
+}
