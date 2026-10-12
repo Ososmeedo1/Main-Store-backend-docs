@@ -55,7 +55,28 @@ export async function POST(req) {
   const { method, baseUrl, path, query, headers, body } = payload || {};
   const allowed = allowedBaseUrls();
   const cleanBase = String(baseUrl || "").replace(/\/$/, "");
-  if (!allowed.includes(cleanBase)) {
+  // Scheme-flexible allow check: Bruno envs store http://... but the live
+  // backend also serves https://... — compare by host so either works.
+  const allowedHosts = new Set(
+    allowed
+      .map((a) => {
+        try {
+          return new URL(a).host.toLowerCase();
+        } catch {
+          return null;
+        }
+      })
+      .filter(Boolean)
+  );
+  let cleanHost = null;
+  try {
+    cleanHost = new URL(cleanBase).host.toLowerCase();
+  } catch {
+    cleanHost = null;
+  }
+  const allowListed =
+    allowed.includes(cleanBase) || (cleanHost && allowedHosts.has(cleanHost));
+  if (!allowListed) {
     return Response.json(
       { error: `Base URL not allowed. Allowed: ${allowed.join(", ")}` },
       { status: 403 }
@@ -75,8 +96,30 @@ export async function POST(req) {
   if (!/^https?:$/.test(target.protocol)) {
     return Response.json({ error: "Only http(s) allowed." }, { status: 400 });
   }
-  if (isBlockedHost(target.hostname)) {
-    return Response.json({ error: "Blocked destination host." }, { status: 403 });
+  // Loopback targets only make sense when the docs site itself runs on the
+  // user's machine (npm run dev proxies to their local backend). On a
+  // deployed host, localhost = the server, never the user's laptop.
+  const reqHost = (req.headers.get("host") || "").toLowerCase().split(":")[0];
+  const isLocalDev =
+    !process.env.VERCEL &&
+    (process.env.NODE_ENV !== "production" ||
+      reqHost === "localhost" ||
+      reqHost === "127.0.0.1");
+  const isLoopback =
+    target.hostname.toLowerCase() === "localhost" ||
+    target.hostname.toLowerCase().endsWith(".localhost") ||
+    target.hostname === "127.0.0.1" ||
+    target.hostname === "::1" ||
+    target.hostname === "[::1]";
+  if (isBlockedHost(target.hostname) && !(isLocalDev && isLoopback)) {
+    const hint =
+      isLoopback && !isLocalDev
+        ? "That address (localhost) means this server itself — it can't reach your laptop. Switch the playground to the Production server."
+        : "That destination is private/internal and can't be proxied.";
+    return Response.json(
+      { error: `Blocked destination host. ${hint}` },
+      { status: 403 }
+    );
   }
   // DNS-level SSRF: re-resolve is out of scope for edge; hostname blocklist above applies.
 

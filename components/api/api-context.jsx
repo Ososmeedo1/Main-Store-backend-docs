@@ -62,6 +62,30 @@ function persist(patch) {
 
 const ApiCtx = createContext(null);
 
+// Pick the env the playground should hit: Production by name, else the
+// first non-loopback http(s) URL, else envs[0] (local dev fallback).
+function pickServerEnv(envs) {
+  if (!envs?.length) return null;
+  const named = envs.find((e) => /production/i.test(e?.name || ""));
+  if (named?.variables?.url) return named;
+  const pub = envs.find((e) => {
+    try {
+      const u = new URL(e?.variables?.url || "");
+      const h = u.hostname.toLowerCase();
+      return (
+        (u.protocol === "http:" || u.protocol === "https:") &&
+        h !== "localhost" &&
+        !h.endsWith(".localhost") &&
+        !h.endsWith(".local") &&
+        h !== "127.0.0.1"
+      );
+    } catch {
+      return false;
+    }
+  });
+  return pub || envs[0];
+}
+
 export function ApiProvider({ children }) {
   const stored = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [authOpen, setAuthOpen] = useState(false);
@@ -80,10 +104,15 @@ export function ApiProvider({ children }) {
     persist({ token: "" });
   }, []);
 
-  // One real server, displayed as Production.
-  const serverName = envs[0]?.name || "Production";
+  // Prefer the public Production server. envs[0] is Dev (localhost),
+  // which a deployed proxy can never reach (localhost = the server
+  // itself, plus the proxy blocklist rejects loopback/private hosts).
+  const serverName = useMemo(() => {
+    const e = pickServerEnv(envs);
+    return e?.name || envs[0]?.name || "Production";
+  }, [envs]);
   const baseUrl = useMemo(() => {
-    const e = envs[0];
+    const e = pickServerEnv(envs);
     return (e?.variables?.url || "").replace(/\/$/, "");
   }, [envs]);
 
