@@ -47,7 +47,7 @@
     "name": "add brand",
     "method": "POST",
     "path": "/brands/add",
-    "description": ""
+    "description": "Creates a new brand under a specific sub-category. A brand represents a company or product line like \"Apple\", \"Samsung\", \"Sony\", etc. Each brand must belong to a sub-category and category, have a unique name, and include a logo image. The system automatically generates a slug and verifies that the s"
   },
   {
     "id": "brands/get-brand",
@@ -67,7 +67,7 @@
     "name": "update brand",
     "method": "PUT",
     "path": "/brands/6aca7df5a40b96529377a300",
-    "description": ""
+    "description": "Updates an existing brand's name or logo image. When the name changes, the slug is automatically regenerated. The new logo replaces the old one on cloud storage. The brand maintains its relationship with both its category and sub-category."
   },
   {
     "id": "brands/delete-brand",
@@ -77,7 +77,7 @@
     "name": "delete brand",
     "method": "DELETE",
     "path": "/brands/6aca7df5a40b96529377a300",
-    "description": ""
+    "description": "Removes a brand completely from the system. This deletes the brand logo and its folder from cloud storage. Products under this brand may become orphaned if not handled separately, so consider your data structure before deletion."
   },
   {
     "id": "brands/list-related-brands",
@@ -147,7 +147,7 @@
     "name": "add category",
     "method": "POST",
     "path": "/categories/add",
-    "description": ""
+    "description": "Creates a new main product category in the system. This is used to organize products into broad groups like \"Electronics\", \"Clothing\", \"Books\", etc. When you add a category, you need to provide a unique name and an image that represents the category. The system automatically creates a slug from the "
   },
   {
     "id": "categories/get-category",
@@ -157,7 +157,7 @@
     "name": "get category",
     "method": "GET",
     "path": "/categories/specific",
-    "description": ""
+    "description": "This endpoint gets one specific category from the database. You can search by category id, name, or slug It returns the matching category if it exists If no search value is provided, it returns an error If the category is not found, it returns a “not found” error In simple words: this API is used wh"
   },
   {
     "id": "categories/update-category",
@@ -167,7 +167,7 @@
     "name": "update category",
     "method": "PUT",
     "path": "/categories/update/6aca47afef0bfa241a51c8b4",
-    "description": ""
+    "description": "Allows you to modify an existing category's information. You can update the category name, the image, or both. When the name changes, the system automatically updates the slug as well. The old image is replaced with the new one on cloud storage. This is useful when you need to rename categories or r"
   },
   {
     "id": "categories/delete-category",
@@ -177,7 +177,7 @@
     "name": "delete category",
     "method": "DELETE",
     "path": "/categories/delete/6aca47afef0bfa241a51c8b4",
-    "description": ""
+    "description": "Removes a category completely from the system. This also removes the category image from cloud storage. It's important to note that deleting a category may leave sub-categories and products without a parent category, so you should consider your data relationships before performing this action."
   },
   {
     "id": "categories/list-categories",
@@ -197,7 +197,7 @@
     "name": "add coupon",
     "method": "POST",
     "path": "/coupons/add",
-    "description": ""
+    "description": "Creates a new discount coupon code that can be applied during checkout. You need to provide a unique coupon code (like \"SAVE50\" or \"SUMMER2025\"), the validity period (start and end dates), the discount amount, and the type of discount (fixed amount or percentage). You can also specify which users ar"
   },
   {
     "id": "coupons/get-coupons",
@@ -227,7 +227,7 @@
     "name": "update coupon",
     "method": "PUT",
     "path": "/coupons/update/6aca81d326b507a8773ecdef",
-    "description": ""
+    "description": "Modifies an existing coupon's details. You can update the coupon code, validity dates, discount amount/type, eligible users, or enable/disable the coupon. All changes are logged in a change log for audit purposes, which tracks who made the change and what was modified. This allows you to manage coup"
   },
   {
     "id": "orders/add-order",
@@ -287,7 +287,7 @@
     "name": "add product",
     "method": "POST",
     "path": "/products/add",
-    "description": ""
+    "description": "Creates a new product with complete details. This includes the product title, description, specifications (like size, color, features), pricing, discount information, stock quantity, and multiple product images. The system automatically calculates the final price after applying discounts, generates "
   },
   {
     "id": "products/update-product",
@@ -297,7 +297,7 @@
     "name": "update product",
     "method": "PUT",
     "path": "/products/update/6aca805f26b507a8773ecd91",
-    "description": ""
+    "description": "Updates any information about an existing product, including title, description, specifications, price, discount amount/type, stock quantity, and product badges (like \"New\", \"Hot Sale\", \"Best Seller\"). When the title changes, the slug is regenerated. When price or discount values change, the final p"
   },
   {
     "id": "products/list-all-products",
@@ -327,7 +327,7 @@
     "name": "delete product",
     "method": "DELETE",
     "path": "/products/6aca805f26b507a8773ecd91",
-    "description": ""
+    "description": "Permanently removes a product from the system. All product images are deleted from cloud storage along with the entire product folder. This deletion doesn't affect existing orders that contain this product, but it may affect shopping carts and wishlists."
   },
   {
     "id": "reviews/add-review",
@@ -357,7 +357,7 @@
     "name": "accept or reject review",
     "method": "PATCH",
     "path": "/reviews/action/6aca84564ff66622d81e090b",
-    "description": ""
+    "description": "Moderates a product review submitted by a customer. This endpoint allows an admin to either approve a review to make it publicly visible to other customers, or reject it if it violates guidelines or is inappropriate. Once you choose to approve or reject, that status is recorded. Approved reviews app"
   },
   {
     "id": "sub-categories/add-sub-category",
@@ -367,7 +367,7 @@
     "name": "add sub category",
     "method": "POST",
     "path": "/subcategories/add",
-    "description": ""
+    "description": "Creates a sub-category under a parent category to further organize products. For example, under \"Electronics\" you might have \"Smartphones\", \"Laptops\", \"Cameras\". Sub-categories must belong to an existing category and each sub-category needs a unique name and an image. The system automatically genera"
   },
   {
     "id": "sub-categories/get-specific-sub-category",
@@ -377,7 +377,7 @@
     "name": "get specific sub category",
     "method": "GET",
     "path": "/subcategories/specific",
-    "description": ""
+    "description": "This endpoint gets one specific sub-category from the database. You can search by sub-category id, name, or slug It returns the matching sub-category if it exists If the sub-category is not found, it returns an error In simple words: this API is used when you want to view one sub-category only, such"
   },
   {
     "id": "sub-categories/update-sub-category",
@@ -387,7 +387,7 @@
     "name": "update sub category",
     "method": "PUT",
     "path": "/subcategories/6aca491def0bfa241a51c8c7",
-    "description": ""
+    "description": "Updates an existing sub-category's name, image, or both. Similar to category updates, the slug is automatically regenerated when the name changes, and the image is replaced on cloud storage. The sub-category maintains its relationship with the parent category."
   },
   {
     "id": "sub-categories/delete-sub-category",
@@ -397,7 +397,7 @@
     "name": "Delete sub category",
     "method": "DELETE",
     "path": "/subcategories/6aca491def0bfa241a51c8c7",
-    "description": ""
+    "description": "Permanently removes a sub-category from the system. When you delete a sub-category, all brands associated with that sub-category are automatically deleted as well (cascading deletion). The sub-category images are removed from cloud storage."
   },
   {
     "id": "sub-categories/list-sub-categories",
@@ -407,7 +407,7 @@
     "name": "List sub categories",
     "method": "GET",
     "path": "/subcategories",
-    "description": ""
+    "description": "This endpoint is used to get a list of all sub-categories. It also uses ApiFeatures, so it supports: pagination filtering searching sorting Examples: GET /sub-categories?page=1&limit=10 → page 1, 10 sub-categories GET /sub-categories?categoryId=123 → show sub-categories under a specific category GET"
   },
   {
     "id": "users/register",

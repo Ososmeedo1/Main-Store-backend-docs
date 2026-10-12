@@ -117,6 +117,28 @@ function getFirst(blocks, name, sub) {
   return blocks.find((b) => b.name === name && (sub === undefined || b.sub === sub));
 }
 
+function parsePlainDescription(b) {
+  // Fallback for `description: single-line text` (no triple quotes).
+  // Captures the first line plus wrapped continuation lines; stops at a
+  // blank line or the next key (e.g. request:/response: blocks).
+  const lines = String(b || "").split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(/^[ \t]*description:[ \t]*(.*)$/);
+    if (!m) continue;
+    const first = (m[1] || "").trim();
+    if (!first || first.startsWith("'")) continue; // triple-quoted handled elsewhere
+    const parts = [first];
+    for (let j = i + 1; j < lines.length; j++) {
+      const l = lines[j];
+      if (!l.trim()) break;
+      if (/^\s*[A-Za-z][A-Za-z0-9_.-]*\s*:/.test(l)) break;
+      parts.push(l.trim());
+    }
+    return parts.join(" ").trim();
+  }
+  return "";
+}
+
 function parseExample(blocks) {
   const ex = getFirst(blocks, "example");
   if (!ex) return {};
@@ -124,6 +146,8 @@ function parseExample(blocks) {
   const nameM = b.match(/name:\s*(.+)/);
   // description '''...'''
   const descM = b.match(/description:\s*'''(.*?)'''/s);
+  let description = (descM && descM[1].trim()) || "";
+  if (!description) description = parsePlainDescription(b);
   const statusM = b.match(/status:\s*\{\s*code:\s*(\d+)\s*text:\s*(.+?)\s*\}/s);
   const respBodyM = b.match(/body:\s*\{\s*type:\s*(\w+)\s*content:\s*'''(.*?)'''/s);
   const respHeadersM = b.match(/response:\s*\{\s*headers:\s*\{(.*?)\}\s*status:/s);
@@ -131,13 +155,74 @@ function parseExample(blocks) {
   if (respHeadersM) respHeaders = parseKVLines(respHeadersM[1]);
   return {
     exampleName: (nameM && nameM[1].trim()) || "",
-    description: (descM && descM[1].trim()) || "",
+    description,
     status: statusM ? Number(statusM[1]) : null,
     statusText: statusM ? statusM[2].trim() : "",
     responseType: (respBodyM && respBodyM[1].trim()) || "json",
     responseBodyRaw: (respBodyM && respBodyM[2].trim()) || "",
     responseHeaders: respHeaders,
   };
+}
+
+// Parse `body:multipart-form` / `body:form-urlencoded` blocks into fields.
+// Skips Bruno-disabled (~name) entries, handles ''' multiline values, and
+// turns @file(local Windows path) into a file field (path stripped to its
+// basename — absolute local paths must never reach the public docs).
+function parseFormFields(blockBody) {
+  const fields = [];
+  const lines = String(blockBody || "").split("\n");
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    i++;
+    if (!line || line.startsWith("#") || line === "}") continue;
+    if (line.startsWith("~")) continue; // disabled in Bruno
+    const m = line.match(/^([^:]+):\s*(.*)$/);
+    if (!m) continue;
+    const name = m[1].trim();
+    let value = (m[2] || "").trim();
+    if (!name) continue;
+    // triple-quoted multiline value (e.g. specs: ''' {...} ''')
+    if (value.startsWith("'''")) {
+      value = value.slice(3);
+      if (value.includes("'''")) {
+        value = value.split("'''")[0];
+      } else {
+        const buf = [value];
+        while (i < lines.length) {
+          const l = lines[i];
+          i++;
+          if (l.includes("'''")) {
+            buf.push(l.split("'''")[0]);
+            break;
+          }
+          buf.push(l);
+        }
+        value = buf.join("\n");
+      }
+      value = value.trim();
+      fields.push({ name, type: "string", example: value.slice(0, 120), sample: `${name}: ${value}` });
+      continue;
+    }
+    const fileM = value.match(/@file\(\s*([^)]+?)\s*\)/);
+    const ctM = value.match(/@contentType\(\s*([^)]+?)\s*\)/);
+    if (fileM) {
+      const base = String(fileM[1]).trim().split(/[\\/]/).pop() || "your-file";
+      const ct = ctM ? ctM[1].trim() : "";
+      fields.push({
+        name,
+        type: ct ? `file (${ct})` : "file",
+        example: base,
+        sample: `${name}: @file(${base})`,
+      });
+      continue;
+    }
+    let type = "string";
+    if (/^-?\d+(\.\d+)?$/.test(value)) type = "number";
+    else if (/^(true|false)$/i.test(value)) type = "boolean";
+    fields.push({ name, type, example: value.slice(0, 120), sample: `${name}: ${value}` });
+  }
+  return fields;
 }
 
 function inferSchema(obj, prefix = "") {
@@ -188,10 +273,24 @@ function parseRequestFile(file, collectionRoot) {
 
   let bodyRaw = "";
   let bodyType = bodyMode;
+  let bodySchema = [];
   const bodyJsonBlk = blocks.find((b) => b.name === "body" && b.sub === "json");
   if (bodyJsonBlk) {
     bodyRaw = bodyJsonBlk.body.trim();
     bodyType = "json";
+  }
+  // form bodies (file uploads + urlencoded): fields become the docs' body
+  // table + sample; the playground can't Send files so it shows guidance.
+  const bodyFormBlk = blocks.find(
+    (b) => b.name === "body" && (b.sub === "multipart-form" || b.sub === "form-urlencoded")
+  );
+  if (bodyFormBlk) {
+    const formFields = parseFormFields(bodyFormBlk.body);
+    if (formFields.length) {
+      bodyType = bodyMode && bodyMode !== "none" ? bodyMode : "multipartForm";
+      bodyRaw = formFields.map((f) => f.sample).join("\n");
+      bodySchema = formFields.map(({ name, type, example }) => ({ name, type, example }));
+    }
   }
 
   const docsBlk = getFirst(blocks, "docs");
@@ -223,7 +322,6 @@ function parseRequestFile(file, collectionRoot) {
     name: m[1], value: "", required: true,
   }));
 
-  let bodySchema = [];
   let bodyPretty = bodyRaw;
   if (bodyType === "json" && bodyRaw) {
     try {

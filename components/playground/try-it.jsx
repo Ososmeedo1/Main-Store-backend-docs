@@ -33,6 +33,13 @@ export default function TryIt({ endpoint }) {
 
   const needsToken = (endpoint.headers || []).some((h) => h.name.toLowerCase() === "token");
   const hasBody = ["POST", "PUT", "PATCH", "DELETE"].includes(endpoint.method);
+  // File-upload endpoints (multipart/form): the proxy only speaks JSON, so
+  // Send is disabled here — fields are documented below, use the Code
+  // examples tab (cURL -F) or Bruno to actually send files.
+  const isUpload =
+    hasBody &&
+    !["json", "none"].includes(String(endpoint.bodyType || "none").toLowerCase()) &&
+    (endpoint.bodySchema || []).length > 0;
 
   const finalHeaders = useMemo(() => {
     const list = headers.map((h) => ({ ...h }));
@@ -57,6 +64,11 @@ export default function TryIt({ endpoint }) {
 
   async function send() {
     if (loading) return;
+    if (isUpload) {
+      setError("This endpoint needs a file upload, which the playground can't send. Copy the cURL from Code examples below (it uses -F flags) or run it in Bruno.");
+      setResult(null);
+      return;
+    }
     // Validate before sending, in plain words.
     if (needsToken && !authorized) {
       setError("You need to log in first — this endpoint needs a token.");
@@ -202,7 +214,7 @@ export default function TryIt({ endpoint }) {
         </fieldset>
       )}
 
-      {hasBody && (
+      {hasBody && !isUpload && (
         <div className="min-w-0">
           <div className="flex min-w-0 flex-wrap items-center gap-2">
             <label className={`${label} min-w-0 flex-1`} htmlFor={`body-${endpoint.id}`}>
@@ -225,6 +237,26 @@ export default function TryIt({ endpoint }) {
               This JSON is not valid yet. Press Format JSON to fix spacing, or check commas and quotes.
             </p>
           )}
+        </div>
+      )}
+
+      {isUpload && (
+        <div className="min-w-0 border-2 border-[var(--border)] bg-[var(--surface-content)] p-4">
+          <p className={label}>Data to send (form fields)</p>
+          <ul className="mt-1 min-w-0 space-y-1">
+            {(endpoint.bodySchema || []).map((f, i) => (
+              <li key={i} className="flex min-w-0 flex-wrap items-baseline gap-x-2 break-words text-sm font-normal text-[var(--text-primary)]">
+                <code className="font-mono text-xs font-semibold">{f.name}</code>
+                <span className="font-mono text-xs text-[var(--text-tertiary)]">{f.type}</span>
+                <span className="min-w-0 flex-1 break-words font-mono text-xs text-[var(--text-secondary)]">e.g. {String(f.example).slice(0, 60)}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 break-words text-sm font-normal text-[var(--text-secondary)]">
+            This endpoint takes a file upload, so <strong>Send request is off here</strong>.
+            Copy the ready-made cURL from <strong>Code examples</strong> below (it uses
+            {" "}<code>-F</code> flags) or run it in Bruno.
+          </p>
         </div>
       )}
 
@@ -254,14 +286,15 @@ export default function TryIt({ endpoint }) {
         </div>
       </details>
 
-      <LiveRequest endpoint={endpoint} baseUrl={baseUrl} query={query} headers={finalHeaders} body={hasBody ? body : ""} />
+      <LiveRequest endpoint={endpoint} baseUrl={baseUrl} query={query} headers={finalHeaders} body={isUpload ? "" : (hasBody ? body : "")} bodyType={endpoint.bodyType} bodyFields={endpoint.bodySchema} />
 
       <div className="flex min-w-0 flex-wrap gap-2">
         <button
           type="button"
           onClick={send}
-          disabled={loading}
+          disabled={loading || isUpload}
           aria-busy={loading}
+          title={isUpload ? "File uploads can't be sent from the playground — use the cURL below" : undefined}
           className="mica-btn mica-btn-primary min-w-0 flex-1 px-5 text-base disabled:cursor-not-allowed sm:flex-none sm:px-8"
         >
           {loading && <Loader2 size={16} className="mica-spinner" aria-hidden="true" />}

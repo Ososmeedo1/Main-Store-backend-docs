@@ -6,9 +6,9 @@ import { curlSnippet } from "@/lib/snippets";
 
 // Live cURL preview: always matches the current form values (endpoint,
 // baseUrl, query, headers, body passed in as props each render).
-export function LiveRequest({ endpoint, baseUrl, query, headers, body }) {
+export function LiveRequest({ endpoint, baseUrl, query, headers, body, bodyType, bodyFields }) {
   const [ok, setOk] = useState(false);
-  const text = curlSnippet(endpoint, { baseUrl: baseUrl || "{{baseUrl}}", query, headers, body });
+  const text = curlSnippet(endpoint, { baseUrl: baseUrl || "{{baseUrl}}", query, headers, body, bodyType, bodyFields });
   return (
     <div className="min-w-0">
       <div className="flex min-h-9 min-w-0 flex-wrap items-center gap-2">

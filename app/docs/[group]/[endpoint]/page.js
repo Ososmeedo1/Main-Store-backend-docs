@@ -106,7 +106,8 @@ export default async function EndpointPage({ params }) {
   const headers = (ep.headers || []).map((h) => ({ name: h.name, value: h.value }));
   const query = Object.fromEntries((ep.queryParams || []).map((q) => [q.name, q.value || ""]));
   const body = ep.bodyRaw || "";
-  const snippetProps = { baseUrl: "{{baseUrl}}", query, headers, body };
+  const isUpload = /multipart|urlencoded/i.test(ep.bodyType || "");
+  const snippetProps = { baseUrl: "{{baseUrl}}", query, headers, body, bodyType: ep.bodyType, bodyFields: ep.bodySchema };
   const snippets = {
     curl: <CodeBlock title="cURL" lang="bash" code={curlSnippet(ep, snippetProps)} />,
     fetch: <CodeBlock title="JavaScript (fetch)" lang="javascript" code={fetchSnippet(ep, snippetProps)} />,
@@ -196,7 +197,7 @@ export default async function EndpointPage({ params }) {
             <section id="examples" className="mica-card min-w-0 space-y-4 p-6" aria-label="Code examples">
               <h2 className="break-words text-xl font-semibold text-[var(--text-primary)]">Code examples</h2>
               <ExampleTabs snippets={snippets} />
-              {body && <CodeBlock title="Body JSON" lang="json" code={body} />}
+              {body && <CodeBlock title={isUpload ? "Body (form fields)" : "Body JSON"} lang={isUpload ? "bash" : "json"} code={body} />}
             </section>
 
             {/* D — Details */}

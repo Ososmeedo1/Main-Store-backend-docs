@@ -20,7 +20,8 @@ theme), same components/layout — only content differs.
    - `get/post/put/patch/delete { url, body }` → method + path (`{{url}}` stripped)
    - `headers`, `params:query` → headers + query tables (`token` header = auth required)
    - `body:json` → request body + inferred schema table
-   - `example { description, response }` (`docs { }` fallback) → rendered description + sample response
+   - `body:multipart-form` / `body:form-urlencoded` → form-fields table + sample (`~disabled` skipped, `@file(local path)` reduced to filename)
+   - `example { description, response }` (`docs { }` fallback) → rendered description + sample response (plain `description:` lines work, not just `'''` quotes)
 3. Environments: add/edit `./API_Docs/Ecommerce/environments/*.bru` with `vars { url, ... }` —
    each becomes an entry in the environment switcher and proxy allowlist.
 4. Refresh: `npm run parse && npm run dev` (parse also runs automatically on
