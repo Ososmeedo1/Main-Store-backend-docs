@@ -27,7 +27,7 @@ export default function Page() {
         Every request in these docs runs against one{" "}
         <Term name="environment">Base URL</Term>:
       </P>
-      <GuideCode>{`Base URL: http://ecommerce-backend-orpin-five.vercel.app`}</GuideCode>
+      <GuideCode>{`Base URL: https://ecommerce-backend-chi-lilac.vercel.app`}</GuideCode>
       <H>Step 2 — Get a <Term name="token">token</Term></H>
       <P>
         A <Term name="token">token</Term> is a secret string that proves who you are.

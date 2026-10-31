@@ -54,4 +54,4 @@ npm start              # serve production build
 ```
 
 Env vars (`ALLOWED_BASE_URLS` = proxy allowlist) default to the Bruno env URLs
-(`http://ecommerce-backend-orpin-five.vercel.app`, `http://localhost:3000`).
+(`https://ecommerce-backend-chi-lilac.vercel.app`, `http://localhost:3000`).
