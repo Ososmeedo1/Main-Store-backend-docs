@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T18:34:48.938Z",
+  "generatedAt": "2026-11-13T19:55:44.307Z",
   "collection": "Ecommerce",
   "collectionRoot": "Ecommerce",
   "docsHtml": "Ecommerce-documentation.html",
@@ -5510,8 +5510,8 @@
       "group": "reviews",
       "name": "list reviews",
       "method": "GET",
-      "urlRaw": "{{url}}/reviews",
-      "path": "/reviews",
+      "urlRaw": "{{url}}/reviews/list/6aca805f26b507a8773ecd91",
+      "path": "/reviews/list/6aca805f26b507a8773ecd91",
       "queryParams": [],
       "pathParams": [],
       "headers": [
@@ -5530,7 +5530,7 @@
         "in": "header",
         "name": "token"
       },
-      "description": "This endpoint gets all reviews.\n        \n    It uses ApiFeatures when implemented in the list flow, so it can support:\n        \n    pagination\n    filtering by product or user\n    sorting by rating\n    searching review text\n    Examples:\n        \n    GET /reviews?page=1&limit=10\n    GET /reviews?productId=123\n    GET /reviews?sort=-reviewRating\n    Simple meaning: this API is used to show customer reviews with filtering and sorting.",
+      "description": "This endpoint lists all reviews for one product: GET /reviews/list/:productId.\n\n    Authentication: required. Send the JWT in the token header (Buyer or Admin).\n    The endpoint returns every review document for the product; it does not\n    filter by reviewStatus and it does not paginate.\n\n    URL parameter:\n    - productId (required): the product's MongoDB ObjectId, a 24-character\n      hexadecimal string (for example 6aca805f26b507a8773ecd91).\n\n    Expected productId format: ^[a-fA-F0-9]{24}$.\n    This route does not validate productId with Joi. A malformed value reaches\n    Mongoose, throws a CastError, and the API answers 500 Internal Server Error.\n    Always pass the product's real _id.\n\n    Populated fields returned by the controller:\n    - userId: { username, email } (the password is never selected)\n    - productId: { title }\n\n    Review fields returned:\n    - _id\n    - reviewRating: number from 0 to 5\n    - reviewBody: string (may be empty)\n    - reviewStatus: \"pending\", \"accepted\" or \"rejected\"\n    - createdAt / updatedAt: ISO date strings\n\n    Success — 200 OK:\n    {\n      \"message\": \"done\",\n      \"data\": [\n        {\n          \"_id\": \"6aca84564ff66622d81e090b\",\n          \"userId\": {\n            \"username\": \"osama\",\n            \"email\": \"osama1@gmail.com\"\n          },\n          \"productId\": {\n            \"title\": \"Big Shanta\"\n          },\n          \"reviewRating\": 5,\n          \"reviewBody\": \"Good quality\",\n          \"reviewStatus\": \"pending\",\n          \"createdAt\": \"2026-10-10T18:30:46.927Z\",\n          \"updatedAt\": \"2026-10-10T18:30:46.927Z\"\n        }\n      ]\n    }\n\n    Empty reviews — 404 Not Found:\n    {\n      \"message\": \"No Reviews yet\",\n      \"error\": null,\n      \"stack\": null\n    }\n\n    Missing token — 400 Bad Request:\n    {\n      \"message\": \"Not logged in\",\n      \"error\": null,\n      \"stack\": null\n    }\n\n    Invalid productId — 500 Internal Server Error (stack trimmed):\n    {\n      \"message\": \"Internal Server Error\",\n      \"error\": \"Error handle middleware\",\n      \"stack\": \"CastError: Cast to ObjectId failed for value \\\"not-an-object-id\\\" (type string) at path \\\"productId\\\"\"\n    }\n\n    An invalid or expired JWT is thrown by the auth middleware and currently\n    also surfaces as 500 with the JWT error message (for example \"jwt malformed\"\n    or \"invalid signature\").",
       "docsNote": "",
       "exampleName": "List reviews",
       "response": {
@@ -5540,10 +5540,6 @@
           {
             "name": "access-control-allow-origin",
             "value": "*"
-          },
-          {
-            "name": "age",
-            "value": "0"
           },
           {
             "name": "cache-control",
@@ -5586,25 +5582,14 @@
             "value": "fra1::iad1::w26nh-1791657062015-9f67478d161d"
           }
         ],
-        "bodyRaw": "{\n          \"message\": \"done\",\n          \"data\": [\n            {\n              \"_id\": \"6ac15fd433488f956288a309\",\n              \"userId\": null,\n              \"productId\": {\n                \"title\": \"Hatif Nokhba 5G\"\n              },\n              \"reviewRating\": 2,\n              \"reviewBody\": \"test\",\n              \"reviewStatus\": \"pending\",\n              \"createdAt\": \"2026-10-03T20:04:36.359Z\",\n              \"updatedAt\": \"2026-10-03T20:04:36.359Z\"\n            },\n            {\n              \"_id\": \"6aca84564ff66622d81e090b\",\n              \"userId\": {\n                \"email\": \"osama1@gmail.com\"\n              },\n              \"productId\": {\n                \"title\": \"Big Shanta\"\n              },\n              \"reviewRating\": 5,\n              \"reviewBody\": \"Good quality\",\n              \"reviewStatus\": \"pending\",\n              \"createdAt\": \"2026-10-10T18:30:46.927Z\",\n              \"updatedAt\": \"2026-10-10T18:30:46.927Z\"\n            }\n          ]\n        }",
+        "bodyRaw": "{\n          \"message\": \"done\",\n          \"data\": [\n            {\n              \"_id\": \"6aca84564ff66622d81e090b\",\n              \"userId\": {\n                \"username\": \"osama\",\n                \"email\": \"osama1@gmail.com\"\n              },\n              \"productId\": {\n                \"title\": \"Big Shanta\"\n              },\n              \"reviewRating\": 5,\n              \"reviewBody\": \"Good quality\",\n              \"reviewStatus\": \"pending\",\n              \"createdAt\": \"2026-10-10T18:30:46.927Z\",\n              \"updatedAt\": \"2026-10-10T18:30:46.927Z\"\n            }\n          ]\n        }",
         "bodyJson": {
           "message": "done",
           "data": [
             {
-              "_id": "6ac15fd433488f956288a309",
-              "userId": null,
-              "productId": {
-                "title": "Hatif Nokhba 5G"
-              },
-              "reviewRating": 2,
-              "reviewBody": "test",
-              "reviewStatus": "pending",
-              "createdAt": "2026-10-03T20:04:36.359Z",
-              "updatedAt": "2026-10-03T20:04:36.359Z"
-            },
-            {
               "_id": "6aca84564ff66622d81e090b",
               "userId": {
+                "username": "osama",
                 "email": "osama1@gmail.com"
               },
               "productId": {

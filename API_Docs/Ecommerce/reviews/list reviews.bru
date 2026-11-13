@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: {{url}}/reviews
+  url: {{url}}/reviews/list/6aca805f26b507a8773ecd91
   body: none
   auth: inherit
 }
@@ -22,24 +22,82 @@ settings {
 example {
   name: List reviews
   description: '''
-    This endpoint gets all reviews.
-        
-    It uses ApiFeatures when implemented in the list flow, so it can support:
-        
-    pagination
-    filtering by product or user
-    sorting by rating
-    searching review text
-    Examples:
-        
-    GET /reviews?page=1&limit=10
-    GET /reviews?productId=123
-    GET /reviews?sort=-reviewRating
-    Simple meaning: this API is used to show customer reviews with filtering and sorting.
+    This endpoint lists all reviews for one product: GET /reviews/list/:productId.
+
+    Authentication: required. Send the JWT in the token header (Buyer or Admin).
+    The endpoint returns every review document for the product; it does not
+    filter by reviewStatus and it does not paginate.
+
+    URL parameter:
+    - productId (required): the product's MongoDB ObjectId, a 24-character
+      hexadecimal string (for example 6aca805f26b507a8773ecd91).
+
+    Expected productId format: ^[a-fA-F0-9]{24}$.
+    This route does not validate productId with Joi. A malformed value reaches
+    Mongoose, throws a CastError, and the API answers 500 Internal Server Error.
+    Always pass the product's real _id.
+
+    Populated fields returned by the controller:
+    - userId: { username, email } (the password is never selected)
+    - productId: { title }
+
+    Review fields returned:
+    - _id
+    - reviewRating: number from 0 to 5
+    - reviewBody: string (may be empty)
+    - reviewStatus: "pending", "accepted" or "rejected"
+    - createdAt / updatedAt: ISO date strings
+
+    Success — 200 OK:
+    {
+      "message": "done",
+      "data": [
+        {
+          "_id": "6aca84564ff66622d81e090b",
+          "userId": {
+            "username": "osama",
+            "email": "osama1@gmail.com"
+          },
+          "productId": {
+            "title": "Big Shanta"
+          },
+          "reviewRating": 5,
+          "reviewBody": "Good quality",
+          "reviewStatus": "pending",
+          "createdAt": "2026-10-10T18:30:46.927Z",
+          "updatedAt": "2026-10-10T18:30:46.927Z"
+        }
+      ]
+    }
+
+    Empty reviews — 404 Not Found:
+    {
+      "message": "No Reviews yet",
+      "error": null,
+      "stack": null
+    }
+
+    Missing token — 400 Bad Request:
+    {
+      "message": "Not logged in",
+      "error": null,
+      "stack": null
+    }
+
+    Invalid productId — 500 Internal Server Error (stack trimmed):
+    {
+      "message": "Internal Server Error",
+      "error": "Error handle middleware",
+      "stack": "CastError: Cast to ObjectId failed for value \"not-an-object-id\" (type string) at path \"productId\""
+    }
+
+    An invalid or expired JWT is thrown by the auth middleware and currently
+    also surfaces as 500 with the JWT error message (for example "jwt malformed"
+    or "invalid signature").
   '''
   
   request: {
-    url: {{url}}/reviews
+    url: {{url}}/reviews/list/6aca805f26b507a8773ecd91
     method: GET
     mode: none
     headers: {
@@ -50,7 +108,6 @@ example {
   response: {
     headers: {
       access-control-allow-origin: *
-      age: 0
       cache-control: public, max-age=0, must-revalidate
       content-length: 512
       content-type: application/json; charset=utf-8
@@ -75,20 +132,9 @@ example {
           "message": "done",
           "data": [
             {
-              "_id": "6ac15fd433488f956288a309",
-              "userId": null,
-              "productId": {
-                "title": "Hatif Nokhba 5G"
-              },
-              "reviewRating": 2,
-              "reviewBody": "test",
-              "reviewStatus": "pending",
-              "createdAt": "2026-10-03T20:04:36.359Z",
-              "updatedAt": "2026-10-03T20:04:36.359Z"
-            },
-            {
               "_id": "6aca84564ff66622d81e090b",
               "userId": {
+                "username": "osama",
                 "email": "osama1@gmail.com"
               },
               "productId": {

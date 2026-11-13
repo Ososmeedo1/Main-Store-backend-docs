@@ -346,8 +346,8 @@
     "slug": "list-reviews",
     "name": "list reviews",
     "method": "GET",
-    "path": "/reviews",
-    "description": "This endpoint gets all reviews.\n        \n    It uses ApiFeatures when implemented in the list flow, so it can support:\n        \n    pagination\n    filtering by product or user\n    sorting by rating\n    searching review text\n    Examples:\n        \n    GET /reviews?page=1&limit=10\n    GET /reviews?pro"
+    "path": "/reviews/list/6aca805f26b507a8773ecd91",
+    "description": "This endpoint lists all reviews for one product: GET /reviews/list/:productId.\n\n    Authentication: required. Send the JWT in the token header (Buyer or Admin).\n    The endpoint returns every review document for the product; it does not\n    filter by reviewStatus and it does not paginate.\n\n    URL p"
   },
   {
     "id": "reviews/accept-or-reject-review",
